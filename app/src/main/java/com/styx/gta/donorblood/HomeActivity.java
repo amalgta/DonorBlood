@@ -13,16 +13,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.styx.gta.donorblood.base.BaseFragment;
-import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.HomeFragment;
-import com.styx.gta.donorblood.fragments.HomeFragment2;
-import com.styx.gta.donorblood.fragments.HomeFragment3;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 
 public class HomeActivity extends AppCompatActivity
@@ -107,26 +102,6 @@ public class HomeActivity extends AppCompatActivity
                 } else {
                     mFragment = new HomeFragment();
                     addFragment(R.id.fl_content, mFragment, HomeFragment.TAG);
-                }
-                break;
-            case SECOND:
-                if (isFragmentExistsInBackStack(HomeFragment2.TAG)) {
-                    if (getTopFragment() instanceof HomeFragment2)
-                        return;
-                    popBackStack(HomeFragment2.TAG, 0);
-                } else {
-                    mFragment = new HomeFragment2();
-                    addFragment(R.id.fl_content, mFragment, HomeFragment2.TAG);
-                }
-                break;
-            case THIRD:
-                if (isFragmentExistsInBackStack(HomeFragment3.TAG)) {
-                    if (getTopFragment() instanceof HomeFragment3)
-                        return;
-                    popBackStack(HomeFragment3.TAG, 0);
-                } else {
-                    mFragment = new HomeFragment3();
-                    addFragment(R.id.fl_content, mFragment, HomeFragment3.TAG);
                 }
                 break;
         }

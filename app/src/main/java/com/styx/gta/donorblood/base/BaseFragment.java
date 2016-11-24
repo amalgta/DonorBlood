@@ -1,6 +1,7 @@
 package com.styx.gta.donorblood.base;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,12 @@ import android.view.ViewGroup;
 public class BaseFragment extends Fragment {
     String screenTitle;
     int screenLayout;
-    View rootView;
+    protected View rootView;
     boolean isRoot;
 
     public BaseFragment() {
         isRoot = false;
-        setUI();
+        initUI();
     }
 
     @Override
@@ -36,7 +37,18 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    protected void setUI() {
+    protected void initUI() {
+    }
+
+    protected void setUI(Bundle savedInstanceState) {
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (isAdded()) {
+            setUI(savedInstanceState);
+        }
     }
 
     public String getScreenTitle() {
