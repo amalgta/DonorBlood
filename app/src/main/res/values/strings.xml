@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DonorBlood</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Preference-->
+    <string name="pref_is_firstrun">is_firstrun</string>
+    <!--Font Resources-->
+    <string name="font_regular">fonts/OpenSansRegular.ttf</string>
+    <string name="font_gothic_bold">fonts/GothicBold.ttf</string>
+</resources>
