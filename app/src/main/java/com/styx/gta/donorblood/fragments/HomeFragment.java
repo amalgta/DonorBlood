@@ -1,7 +1,6 @@
 package com.styx.gta.donorblood.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
@@ -18,11 +17,11 @@ public class HomeFragment extends BaseFragment {
     protected void initUI() {
         setRoot(true);
         setScreenTitle("HomeFragment");
-        setScreenLayout(R.layout.layout_main);
+        setScreenLayout(R.layout.fragment_home);
     }
 
     @Override
     protected void setUI(Bundle savedInstanceState) {
-        ((FontTextView) rootView.findViewById(R.id.ftv_helloworld)).setText("0 Users Online");
+        ((FontTextView) rootView.findViewById(R.id.tv_helloworld)).setText("0 Users Online");
     }
 }
