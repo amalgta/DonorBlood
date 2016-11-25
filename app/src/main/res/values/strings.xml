@@ -10,4 +10,11 @@
     <!--Font Resources-->
     <string name="font_regular">fonts/OpenSansRegular.ttf</string>
     <string name="font_gothic_bold">fonts/GothicBold.ttf</string>
+    <!--Home Fragment-->
+    <string name="text_zero_donor_ready">No Donor is ready.</string>
+    <string name="text_one_donor_ready">Donor is ready</string>
+    <string name="text_multi_donor_ready">Donors are ready</string>
+
+    <!--Symbols-->
+    <string name="sym_plus">+</string>
 </resources>

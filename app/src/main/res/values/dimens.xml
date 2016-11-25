@@ -8,7 +8,11 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!--Padding-->
-    <!--Margins-->
+    <dimen name="padding_mini">5dp</dimen>
+    <dimen name="padding_default">10dp</dimen>
+    <dimen name="padding_medium">20dp</dimen>
+    <dimen name="padding_large">30dp</dimen>
+    <!--Margin-->
     <dimen name="margin_mini">5dp</dimen>
     <dimen name="margin_default">10dp</dimen>
     <!--Font Sizes-->

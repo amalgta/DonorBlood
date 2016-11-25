@@ -1,5 +1,7 @@
 package com.styx.gta.donorblood.interfaces;
 
+import android.os.Bundle;
+
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 
@@ -8,5 +10,5 @@ import com.styx.gta.donorblood.constants.UserAction;
  */
 
 public interface UserActionListener {
-    void doUserAction(UserAction mUserAction);
+    void doUserAction(UserAction mUserAction,Bundle... mBundle);
 }

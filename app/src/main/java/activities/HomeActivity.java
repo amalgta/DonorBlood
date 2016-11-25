@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood;
+package activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,13 +15,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.SplashScreenActivity;
 import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.HomeFragment;
+import com.styx.gta.donorblood.fragments.HomeFragment2;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UserActionListener {
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv_sidebar);
         navigationView.setNavigationItemSelectedListener(this);
-        doUserAction(UserAction.FIRST);
+        doUserAction(UserAction.HOME);
     }
 
     private void showIntro() {
@@ -82,53 +85,9 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void doUserAction(UserAction mUserAction) {
-        Fragment mFragment;
-        switch (mUserAction) {
-            case FIRST:
-                if (isFragmentExistsInBackStack(HomeFragment.TAG)) {
-                    if (getTopFragment() instanceof HomeFragment)
-                        return;
-                    popBackStack(HomeFragment.TAG, 0);
-                } else {
-                    mFragment = new HomeFragment();
-                    addFragment(R.id.fl_content, mFragment, HomeFragment.TAG);
-                }
-                break;
-        }
-    }
-
-    protected boolean isFragmentExistsInBackStack(String tag) {
-        if (getSupportFragmentManager().findFragmentByTag(tag) != null)
-            return true;
-        else
-            return false;
-    }
-
-    public void addFragment(final int mContainer, final Fragment mFragment,
-                            final String mTag) {
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        final FragmentTransaction fragmentTransaction = fragmentManager
-                .beginTransaction();
-        fragmentTransaction.replace(mContainer, mFragment, mTag);
-        fragmentTransaction.addToBackStack(mTag);
-        fragmentTransaction.commit();
-    }
-
-    public BaseFragment getTopFragment() {
-        return ((BaseFragment) this.getSupportFragmentManager().findFragmentById(R.id.fl_content));
-    }
-
-    public void popBackStack(String tag, int flag) {
-        this.getSupportFragmentManager().popBackStack(tag, flag);
     }
 }

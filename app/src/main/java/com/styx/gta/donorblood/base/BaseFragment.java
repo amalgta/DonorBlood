@@ -1,13 +1,18 @@
 package com.styx.gta.donorblood.base;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import activities.BaseActivity;
 
 /**
  * Created by amal.george on 24-11-2016.
@@ -43,6 +48,14 @@ public class BaseFragment extends Fragment {
     }
 
     protected void setUI(Bundle savedInstanceState) {
+    }
+
+    protected BaseActivity getBase(){
+        return (BaseActivity)getActivity();
+    }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

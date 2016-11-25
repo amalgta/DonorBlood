@@ -5,5 +5,6 @@ package com.styx.gta.donorblood.constants;
  */
 
 public enum UserAction {
-    FIRST, SECOND, THIRD
+    FIRST, SECOND, THIRD,
+    HOME
 }
