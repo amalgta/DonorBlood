@@ -28,7 +28,7 @@ public class HomeActivity extends BaseActivity
         //Check if first run
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         final boolean isFirstRun = prefs.getBoolean(getString(R.string.pref_is_firstrun), true);
-        if (isFirstRun) {
+        if (isFirstRun||true) {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_is_firstrun), Boolean.FALSE);
             edit.commit();
