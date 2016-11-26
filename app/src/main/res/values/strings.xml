@@ -17,4 +17,7 @@
 
     <!--Symbols-->
     <string name="sym_plus">+</string>
+
+    <!--Debug-->
+    <string name="debug_null">Null Pointer Exception</string>
 </resources>

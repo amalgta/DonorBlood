@@ -1,27 +1,19 @@
-package activities;
+package com.styx.gta.donorblood.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.SplashScreenActivity;
-import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.UserAction;
-import com.styx.gta.donorblood.fragments.HomeFragment;
-import com.styx.gta.donorblood.fragments.HomeFragment2;
-import com.styx.gta.donorblood.interfaces.UserActionListener;
 
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +41,7 @@ public class HomeActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv_sidebar);
         navigationView.setNavigationItemSelectedListener(this);
-        doUserAction(UserAction.HOME);
+        doUserAction(UserAction.HOME, new Bundle());
     }
 
     private void showIntro() {
@@ -79,9 +71,9 @@ public class HomeActivity extends BaseActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
         } else if (id == R.id.nav_slideshow) {
-            doUserAction(UserAction.SECOND);
+            doUserAction(UserAction.SECOND, new Bundle());
         } else if (id == R.id.nav_manage) {
-            doUserAction(UserAction.THIRD);
+            doUserAction(UserAction.THIRD, new Bundle());
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

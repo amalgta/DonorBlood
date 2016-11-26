@@ -1,24 +1,25 @@
-package activities;
+package com.styx.gta.donorblood.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.UserAction;
+import com.styx.gta.donorblood.fragments.DonorListFragment;
 import com.styx.gta.donorblood.fragments.HomeFragment;
-import com.styx.gta.donorblood.fragments.HomeFragment2;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
+import com.styx.gta.donorblood.utilities.Logger;
 
 /**
  * Created by amal.george on 25-11-2016.
  */
 
 public class BaseActivity extends AppCompatActivity implements UserActionListener {
+    public static final String TAG = "BaseActivity";
 
 
     protected boolean isFragmentExistsInBackStack(String tag) {
@@ -47,34 +48,36 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
     }
 
     @Override
-    public void doUserAction(UserAction mUserAction, Bundle... mBundle) {
+    public void doUserAction(UserAction mUserAction, Bundle mBundle) {
+        int mLayout = R.id.fl_content;
         Fragment mFragment;
-        switch (mUserAction) {
-            case HOME:
-                if (isFragmentExistsInBackStack(HomeFragment.TAG)) {
-                    if (getTopFragment() instanceof HomeFragment)
-                        return;
-                    popBackStack(HomeFragment.TAG, 0);
-                } else {
-                    mFragment = new HomeFragment();
-                    addFragment(R.id.fl_content, mFragment, HomeFragment.TAG);
-                }
-                break;
-            case FIRST:
-                if (isFragmentExistsInBackStack(HomeFragment2.TAG)) {
-                    if (getTopFragment() instanceof HomeFragment2)
-                        return;
-                    popBackStack(HomeFragment2.TAG, 0);
-                } else {
-                    if(mBundle!=null) {
-                        mFragment = new HomeFragment2();
-                        mFragment.setArguments(mBundle[0]);
-                        addFragment(R.id.fl_content, mFragment, HomeFragment2.TAG);
-                    }else {
-                        Log.e("ERROR","ERROR");
+        try {
+            switch (mUserAction) {
+                case HOME:
+                    if (isFragmentExistsInBackStack(HomeFragment.TAG)) {
+                        if (getTopFragment() instanceof HomeFragment)
+                            return;
+                        popBackStack(HomeFragment.TAG, 0);
+                    } else {
+                        mFragment = new HomeFragment();
+                        mFragment.setArguments(mBundle);
+                        addFragment(mLayout, mFragment, HomeFragment.TAG);
                     }
-                }
-                break;
+                    break;
+                case FIRST:
+                    if (isFragmentExistsInBackStack(DonorListFragment.TAG)) {
+                        if (getTopFragment() instanceof DonorListFragment)
+                            return;
+                        popBackStack(DonorListFragment.TAG, 0);
+                    } else {
+                        mFragment = new DonorListFragment();
+                        mFragment.setArguments(mBundle);
+                        addFragment(mLayout, mFragment, DonorListFragment.TAG);
+                    }
+                    break;
+            }
+        } catch (NullPointerException mNullPointerException) {
+            Logger.e(TAG, getString(R.string.debug_null));
         }
     }
 }

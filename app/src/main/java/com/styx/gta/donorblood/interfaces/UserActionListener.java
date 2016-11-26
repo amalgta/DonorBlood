@@ -10,5 +10,5 @@ import com.styx.gta.donorblood.constants.UserAction;
  */
 
 public interface UserActionListener {
-    void doUserAction(UserAction mUserAction,Bundle... mBundle);
+    void doUserAction(UserAction mUserAction,Bundle mBundle);
 }
