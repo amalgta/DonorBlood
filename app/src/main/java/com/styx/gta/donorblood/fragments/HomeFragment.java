@@ -35,28 +35,27 @@ public class HomeFragment extends BaseFragment {
         setRoot(true);
         setScreenTitle("HomeFragment");
         setScreenLayout(R.layout.fragment_home);
-
     }
 
     @Override
     protected void setUI(Bundle savedInstanceState) {
-        final List<BloodGroup> bloodGroupList = new ArrayList<>();
-        final BloodGroupAdapter mAdapter;
         ((FontTextView) rootView.findViewById(R.id.tv_helloworld)).setText("0 Users Online");
-        mAdapter = new BloodGroupAdapter(bloodGroupList, getContext(), new BloodGroupAdapter.OnItemClickListener() {
+        final List<BloodGroup> bloodGroupList = new ArrayList<>();
+        final BloodGroupAdapter  mAdapter = new BloodGroupAdapter(bloodGroupList, getContext(), new BloodGroupAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BloodGroup thisBloodGroup) {
                 Bundle mBundle = new Bundle();
-                mBundle.putString(Constants.FragmentParameters.title, thisBloodGroup.getName());
-                getBase().doUserAction(UserAction.FIRST, mBundle);
+                mBundle.putString(Constants.FragmentParameters.objectID, thisBloodGroup.getObjectID());
+                getBase().doUserAction(UserAction.DONOR_LIST_FRAGMENT, mBundle);
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         RecyclerView mRecyclerView = ((RecyclerView) rootView.findViewById(R.id.rv_bloodgroup));
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query myTopPostsQuery = databaseReference.child("Data/BloodGroup").orderByChild("name");
+        Query myTopPostsQuery = databaseReference.child("Data/BloodGroup");
         myTopPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -66,7 +65,6 @@ public class HomeFragment extends BaseFragment {
                     mAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

@@ -14,10 +14,12 @@
     <string name="text_zero_donor_ready">No Donor is ready.</string>
     <string name="text_one_donor_ready">Donor is ready</string>
     <string name="text_multi_donor_ready">Donors are ready</string>
-
+    <!--Donor List Fragment-->
+    <string name="text_donor_with_group">Donors with Blood Group </string>
     <!--Symbols-->
     <string name="sym_plus">+</string>
 
     <!--Debug-->
     <string name="debug_null">Null Pointer Exception</string>
+    <string name="debug_parse">Parse Exception</string>
 </resources>

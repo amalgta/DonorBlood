@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_mini">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/padding_large"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_account_box_black_24px" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <com.styx.gta.donorblood.ui.widget.FontTextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Name"
+                    android:textAlignment="center"
+                    app:font="@string/font_gothic_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.styx.gta.donorblood.ui.widget.FontTextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        tools:text="Age"
+                        android:textAlignment="center"
+                        app:font="@string/font_gothic_bold" />
+
+                    <com.styx.gta.donorblood.ui.widget.FontTextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        tools:text="Sex"
+                        android:textAlignment="center"
+                        app:font="@string/font_gothic_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_contact_phone_black_24px" />
+
+                    <com.styx.gta.donorblood.ui.widget.FontTextView
+                        android:id="@+id/tv_contact"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"
+                        tools:text="Phone Number"
+                        android:textAlignment="center"
+                        app:font="@string/font_gothic_bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <com.styx.gta.donorblood.ui.widget.FontTextView
+                        android:id="@+id/tv_share_to_whatsapp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"
+                        android:text="Share to WhatsApp"
+                        android:textAlignment="center"
+                        app:font="@string/font_gothic_bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

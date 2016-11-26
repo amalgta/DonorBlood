@@ -5,5 +5,4 @@ package com.styx.gta.donorblood.utilities;
  */
 
 public interface Utilities {
-
 }

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.styx.gta.donorblood">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:name=".DonorBloodApplication"
         android:allowBackup="true"

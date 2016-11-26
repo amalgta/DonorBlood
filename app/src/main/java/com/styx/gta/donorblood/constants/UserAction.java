@@ -5,6 +5,5 @@ package com.styx.gta.donorblood.constants;
  */
 
 public enum UserAction {
-    FIRST, SECOND, THIRD,
-    HOME
+    HOME, DONOR_LIST_FRAGMENT, DONOR_DETAIL_FRAGMENT, SECOND, THIRD, SEARCH_FRAGMENT, ABOUT_FRAGMENT
 }
