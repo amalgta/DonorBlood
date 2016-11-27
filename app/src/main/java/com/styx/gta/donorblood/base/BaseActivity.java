@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.AboutFragment;
@@ -21,6 +19,7 @@ import com.styx.gta.donorblood.fragments.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.DonorListFragment;
 import com.styx.gta.donorblood.fragments.HomeFragment;
 import com.styx.gta.donorblood.fragments.SearchFragment;
+import com.styx.gta.donorblood.fragments.chat.view.ChatFragment;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 import com.styx.gta.donorblood.utilities.Logger;
 
@@ -128,6 +127,17 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                         mFragment = new AboutFragment();
                         mFragment.setArguments(mBundle);
                         addFragment(mLayout, mFragment, AboutFragment.TAG);
+                    }
+                    break;
+                case TEST_FRAGMENT:
+                    if (isFragmentExistsInBackStack(ChatFragment.TAG)) {
+                        if (getTopFragment() instanceof ChatFragment)
+                            return;
+                        popBackStack(ChatFragment.TAG, 0);
+                    } else {
+                        mFragment = new ChatFragment();
+                        mFragment.setArguments(mBundle);
+                        addFragment(mLayout, mFragment, ChatFragment.TAG);
                     }
                     break;
 
