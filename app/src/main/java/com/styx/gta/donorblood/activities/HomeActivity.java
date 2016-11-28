@@ -46,7 +46,7 @@ public class HomeActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv_sidebar);
         navigationView.setNavigationItemSelectedListener(this);
 
-        doUserAction(UserAction.HOME, new Bundle());
+        doUserAction(UserAction.HOME_SCREEN, new Bundle());
     }
 
     private void showIntro() {
@@ -73,7 +73,7 @@ public class HomeActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            doUserAction(UserAction.HOME, new Bundle());
+            doUserAction(UserAction.HOME_SCREEN, new Bundle());
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

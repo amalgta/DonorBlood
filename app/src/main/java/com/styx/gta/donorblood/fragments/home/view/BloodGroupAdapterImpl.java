@@ -1,38 +1,54 @@
-package com.styx.gta.donorblood.adapters;
+package com.styx.gta.donorblood.fragments.home.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.constants.Constants;
+import com.styx.gta.donorblood.constants.UserAction;
+import com.styx.gta.donorblood.fragments.donorlist.presenter.DonorPresenterImpl;
+import com.styx.gta.donorblood.fragments.home.presenter.BloodGroupPresenterImpl;
 import com.styx.gta.donorblood.models.BloodGroup;
+import com.styx.gta.donorblood.models.Donor;
+import com.styx.gta.donorblood.utilities.Utilities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by amal.george on 25-11-2016.
  */
 
-public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.ViewHolder> {
-    private List<BloodGroup> list;
-    private Context mContext;
-    private OnItemClickListener mListener;
+public class BloodGroupAdapterImpl extends RecyclerView.Adapter<BloodGroupAdapterImpl.ViewHolder> implements BloodGroupAdapter {
 
-    public interface OnItemClickListener {
-        void onItemClick(BloodGroup thisBloodGroup);
+
+    private static String TAG = "DonorAdapterImpl";
+    private final ArrayList<BloodGroup> list = new ArrayList<>();
+    private final BloodGroupPresenterImpl presenter;
+    private Context context;
+
+    public BloodGroupAdapterImpl(Context context) {
+        this.presenter = new BloodGroupPresenterImpl(this);
+        this.context = context;
     }
 
-    public BloodGroupAdapter(List<BloodGroup> list, Context mContext, OnItemClickListener mListener) {
-        this.list = list;
-        this.mContext = mContext;
-        this.mListener = mListener;
+    @Override
+    public void addItem(BloodGroup bloodGroup) {
+        list.add(bloodGroup);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void request() {
+        presenter.request();
     }
 
     @Override
@@ -46,7 +62,7 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         BloodGroup thisBloodGroup = list.get(position);
-        holder.bind(thisBloodGroup, mListener);
+        holder.bind(thisBloodGroup);
     }
 
     @Override
@@ -66,7 +82,7 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
             tv_total_count_text = (TextView) view.findViewById(R.id.tv_total_count_text);
         }
 
-        public void bind(final BloodGroup thisBloodGroup, final OnItemClickListener listener) {
+        public void bind(final BloodGroup thisBloodGroup) {
             tv_name.setText(thisBloodGroup.getName());
             ll_background.setBackgroundColor(Color.parseColor(thisBloodGroup.getThemeColor()));
             tv_total_count.setText(String.valueOf(thisBloodGroup.getApproxTotalCount()));
@@ -74,13 +90,13 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
             String totalCountText;
             switch (thisBloodGroup.getApproxTotalCount()) {
                 case 0:
-                    totalCountText = mContext.getString(R.string.text_zero_donor_ready);
+                    totalCountText = context.getString(R.string.text_zero_donor_ready);
                     break;
                 case 1:
-                    totalCountText = mContext.getString(R.string.text_one_donor_ready);
+                    totalCountText = context.getString(R.string.text_one_donor_ready);
                     break;
                 default:
-                    totalCountText = mContext.getString(R.string.text_multi_donor_ready);
+                    totalCountText = context.getString(R.string.text_multi_donor_ready);
                     break;
             }
             tv_total_count_text.setText(totalCountText);
@@ -88,7 +104,9 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(thisBloodGroup);
+                    Bundle mBundle = new Bundle();
+                    mBundle.putSerializable(Constants.FragmentParameters.keyObject, thisBloodGroup);
+                    Utilities.getApp(context).doUserAction(UserAction.DONOR_LIST_FRAGMENT, mBundle);
                 }
             });
 

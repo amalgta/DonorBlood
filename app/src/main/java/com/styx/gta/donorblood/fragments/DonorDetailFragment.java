@@ -2,8 +2,6 @@ package com.styx.gta.donorblood.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,14 +12,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.adapters.DonorAdapter;
 import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.Constants;
-import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by amal.george on 24-11-2016.
