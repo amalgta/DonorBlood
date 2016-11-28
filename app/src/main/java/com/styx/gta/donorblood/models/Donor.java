@@ -10,17 +10,27 @@ import java.io.Serializable;
  */
 
 public class Donor extends BaseModel implements Serializable {
-    private String address, bloodGroup, contact, dob, name, sex;
+    private String address, bloodGroupCanonicalName, contact, dob, name, sex;
+    private String bloodGroupObjectID;
 
     public Donor() {
+    }
+
+    public interface Sex {
+        String male = "Male";
+        String female = "Female";
     }
 
     public String getAddress() {
         return address;
     }
 
-    public String getBloodGroup() {
-        return bloodGroup;
+    public String getBloodGroupObjectID() {
+        return bloodGroupObjectID;
+    }
+
+    public String getBloodGroupCanonicalName() {
+        return bloodGroupCanonicalName;
     }
 
     public String getContact() {

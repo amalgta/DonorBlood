@@ -1,37 +1,38 @@
-package com.styx.gta.donorblood.fragments.chat.controller;
+package com.styx.gta.donorblood.fragments.home.controller;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.styx.gta.donorblood.fragments.chat.presenter.MessagePresenter;
-import com.styx.gta.donorblood.models.Message;
+import com.styx.gta.donorblood.fragments.donorlist.presenter.DonorPresenter;
+import com.styx.gta.donorblood.fragments.home.presenter.BloodGroupPresenter;
+import com.styx.gta.donorblood.models.BloodGroup;
+import com.styx.gta.donorblood.models.Donor;
+
+import static com.styx.gta.donorblood.utilities.Utilities.getDB;
 
 /**
- * Created by Filip on 25/02/2016.
+ * Created by amal.george on 28-11-2016.
  */
-public class MessageController {
 
-    public static DatabaseReference getDB(String child) {
-        return FirebaseDatabase.getInstance().getReference().child(child);
-    }
+public class BloodGroupController {
 
-    private final MessagePresenter presenter;
+    private final BloodGroupPresenter presenter;
     private final Query query;
 
-    public MessageController(MessagePresenter presenter) {
+    public BloodGroupController(BloodGroupPresenter presenter) {
         this.presenter = presenter;
-        DatabaseReference mMessagesRef = getDB("Data/Messages");
-        this.query = mMessagesRef.orderByValue().limitToLast(100);
+        DatabaseReference mMessagesRef = getDB("Data/BloodGroup");
+        this.query = mMessagesRef;
     }
 
     public void request() {
+
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                presenter.sendMessageToAdapter(dataSnapshot.getValue(Message.class));
+                presenter.sendToAdapter(dataSnapshot.getValue(BloodGroup.class));
             }
 
             @Override

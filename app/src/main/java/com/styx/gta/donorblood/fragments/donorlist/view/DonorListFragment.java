@@ -4,22 +4,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.constants.Constants;
-import com.styx.gta.donorblood.constants.UserAction;
-import com.styx.gta.donorblood.fragments.chat.view.MessageAdapterImpl;
-import com.styx.gta.donorblood.fragments.donorlist.presenter.DonorPresenterImpl;
-import com.styx.gta.donorblood.models.Donor;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.styx.gta.donorblood.models.BloodGroup;
+import com.styx.gta.donorblood.ui.widget.FontTextView;
 
 /**
  * Created by amal.george on 24-11-2016.
@@ -27,7 +16,6 @@ import java.util.List;
 
 public class DonorListFragment extends BaseFragment {
     public static final String TAG = "DonorListFragment";
-    DonorAdapterImpl adapter;
 
     @Override
     protected void initUI() {
@@ -40,9 +28,10 @@ public class DonorListFragment extends BaseFragment {
         RecyclerView mRecyclerView = ((RecyclerView) rootView.findViewById(R.id.rv_donor_list));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        adapter = new DonorAdapterImpl(getContext());
+        BloodGroup bloodGroup = (BloodGroup) getArguments().getSerializable(Constants.FragmentParameters.keyObject);
+        DonorAdapterImpl adapter = new DonorAdapterImpl(getContext(), bloodGroup);
         adapter.request();
         mRecyclerView.setAdapter(adapter);
-
+        ((FontTextView) rootView.findViewById(R.id.tv_title)).setText(bloodGroup.getName());
     }
 }

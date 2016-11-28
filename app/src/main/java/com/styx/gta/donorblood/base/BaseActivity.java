@@ -17,9 +17,7 @@ import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.AboutFragment;
 import com.styx.gta.donorblood.fragments.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.donorlist.view.DonorListFragment;
-import com.styx.gta.donorblood.fragments.HomeFragment;
-import com.styx.gta.donorblood.fragments.SearchFragment;
-import com.styx.gta.donorblood.fragments.chat.view.ChatFragment;
+import com.styx.gta.donorblood.fragments.home.view.HomeFragment;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 import com.styx.gta.donorblood.utilities.Logger;
 
@@ -29,19 +27,6 @@ import com.styx.gta.donorblood.utilities.Logger;
 
 public class BaseActivity extends AppCompatActivity implements UserActionListener {
     public static final String TAG = "BaseActivity";
-
-    public void call(String number) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + number));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            String[] mPermission = {Manifest.permission.CALL_PHONE};
-            //TODO RequestResponse Implementation
-            ActivityCompat.requestPermissions(this, mPermission, Constants.RequestCodes.REQUEST_CODE);
-            return;
-        }
-        startActivity(callIntent);
-    }
-
 
     protected boolean isFragmentExistsInBackStack(String tag) {
         if (getSupportFragmentManager().findFragmentByTag(tag) != null)
@@ -74,7 +59,7 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
         Fragment mFragment;
         try {
             switch (mUserAction) {
-                case HOME:
+                case HOME_SCREEN:
                     if (isFragmentExistsInBackStack(HomeFragment.TAG)) {
                         if (getTopFragment() instanceof HomeFragment)
                             return;
@@ -107,17 +92,6 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                         addFragment(mLayout, mFragment, DonorDetailFragment.TAG);
                     }
                     break;
-                case SEARCH_FRAGMENT:
-                    if (isFragmentExistsInBackStack(SearchFragment.TAG)) {
-                        if (getTopFragment() instanceof SearchFragment)
-                            return;
-                        popBackStack(SearchFragment.TAG, 0);
-                    } else {
-                        mFragment = new SearchFragment();
-                        mFragment.setArguments(mBundle);
-                        addFragment(mLayout, mFragment, SearchFragment.TAG);
-                    }
-                    break;
                 case ABOUT_FRAGMENT:
                     if (isFragmentExistsInBackStack(AboutFragment.TAG)) {
                         if (getTopFragment() instanceof AboutFragment)
@@ -127,17 +101,6 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                         mFragment = new AboutFragment();
                         mFragment.setArguments(mBundle);
                         addFragment(mLayout, mFragment, AboutFragment.TAG);
-                    }
-                    break;
-                case TEST_FRAGMENT:
-                    if (isFragmentExistsInBackStack(ChatFragment.TAG)) {
-                        if (getTopFragment() instanceof ChatFragment)
-                            return;
-                        popBackStack(ChatFragment.TAG, 0);
-                    } else {
-                        mFragment = new ChatFragment();
-                        mFragment.setArguments(mBundle);
-                        addFragment(mLayout, mFragment, ChatFragment.TAG);
                     }
                     break;
 
