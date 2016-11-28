@@ -12,11 +12,11 @@ import com.styx.gta.donorblood.models.Message;
 
 import java.util.ArrayList;
 
-public class MessageAdapterViewImpl extends RecyclerView.Adapter<MessageAdapterViewImpl.ViewHolder> implements MessageAdapterView {
+public class MessageAdapterImpl extends RecyclerView.Adapter<MessageAdapterImpl.ViewHolder> implements MessageAdapter {
     private final ArrayList<Message> mMessageList = new ArrayList<>();
     private final MessagePresenterImpl presenter;
 
-    public MessageAdapterViewImpl() {
+    public MessageAdapterImpl() {
         presenter = new MessagePresenterImpl(this);
     }
 

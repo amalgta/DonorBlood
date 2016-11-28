@@ -46,7 +46,7 @@ public class HomeActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv_sidebar);
         navigationView.setNavigationItemSelectedListener(this);
 
-        doUserAction(UserAction.TEST_FRAGMENT, new Bundle());
+        doUserAction(UserAction.HOME, new Bundle());
     }
 
     private void showIntro() {

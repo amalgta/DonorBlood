@@ -1,6 +1,7 @@
-package com.styx.gta.donorblood.adapters;
+package com.styx.gta.donorblood.fragments.donorlist.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,42 +9,42 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.Constants;
-import com.styx.gta.donorblood.models.BloodGroup;
+import com.styx.gta.donorblood.constants.UserAction;
+import com.styx.gta.donorblood.fragments.donorlist.presenter.DonorPresenterImpl;
 import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.utilities.Logger;
+import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by amal.george on 25-11-2016.
  */
 
-public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder>{
-    private static String TAG = "DonorAdapter";
-    private List<Donor> list;
-    private Context mContext;
-    private OnItemClickListener mListener;
+public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.ViewHolder> implements DonorAdapter {
+    private static String TAG = "DonorAdapterImpl";
+    private final ArrayList<Donor> donors = new ArrayList<>();
+    private final DonorPresenterImpl presenter;
+    private Context context;
 
-
-    public interface OnItemClickListener {
-        void onItemClick(Donor thisDonor);
+    DonorAdapterImpl(Context context) {
+        this.presenter = new DonorPresenterImpl(this);
+        this.context = context;
     }
 
-    public DonorAdapter(List<Donor> list, Context mContext, OnItemClickListener mListener) {
-        this.list = list;
-        this.mContext = mContext;
-        this.mListener = mListener;
+    @Override
+    public void addItem(Donor donor) {
+        donors.add(donor);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void request() {
+        presenter.request();
     }
 
     @Override
@@ -55,13 +56,13 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Donor thisDonor = list.get(position);
-        holder.bind(thisDonor, mListener);
+        Donor thisDonor = donors.get(position);
+        holder.bind(thisDonor);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return donors.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,7 +79,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder>{
             iv_call_icon = (ImageView) view.findViewById(R.id.iv_call_icon);
         }
 
-        public void bind(final Donor thisDonor, final OnItemClickListener listener) {
+        public void bind(final Donor thisDonor) {
             tv_name.setText(thisDonor.getName());
             try {
                 Calendar mDob = Calendar.getInstance();
@@ -89,7 +90,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder>{
                 iv_call_icon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((BaseActivity)mContext).call(thisDonor.getContact());
+                        Utilities.getApp(context).call(thisDonor.getContact());
                     }
                 });
             } catch (ParseException e) {
@@ -99,27 +100,12 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder>{
             tv_sex.setText(thisDonor.getSex());
             tv_contact.setText(thisDonor.getContact());
 
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-            Query myTopPostsQuery2 = databaseReference.child("Data/BloodGroup/" + thisDonor.getBloodGroup());
-            myTopPostsQuery2.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    BloodGroup thisGroup = dataSnapshot.getValue(BloodGroup.class);
-                    //TODO Placeholders they say
-                    tv_blood_group.setText(thisGroup.getName());
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(thisDonor);
+                    Bundle mBundle = new Bundle();
+                    mBundle.putString(Constants.FragmentParameters.objectID, thisDonor.getObjectID());
+                    Utilities.getApp(context).doUserAction(UserAction.DONOR_DETAIL_FRAGMENT, mBundle);
                 }
             });
 

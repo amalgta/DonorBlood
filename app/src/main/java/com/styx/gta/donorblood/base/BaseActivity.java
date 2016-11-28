@@ -16,7 +16,7 @@ import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.AboutFragment;
 import com.styx.gta.donorblood.fragments.DonorDetailFragment;
-import com.styx.gta.donorblood.fragments.DonorListFragment;
+import com.styx.gta.donorblood.fragments.donorlist.view.DonorListFragment;
 import com.styx.gta.donorblood.fragments.HomeFragment;
 import com.styx.gta.donorblood.fragments.SearchFragment;
 import com.styx.gta.donorblood.fragments.chat.view.ChatFragment;

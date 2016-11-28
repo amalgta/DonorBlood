@@ -1,6 +1,6 @@
 package com.styx.gta.donorblood.fragments.chat.presenter;
 
-import com.styx.gta.donorblood.fragments.chat.view.MessageAdapterView;
+import com.styx.gta.donorblood.fragments.chat.view.MessageAdapter;
 import com.styx.gta.donorblood.fragments.chat.controller.MessageController;
 import com.styx.gta.donorblood.models.Message;
 
@@ -8,10 +8,10 @@ import com.styx.gta.donorblood.models.Message;
  * Created by Filip on 25/02/2016.
  */
 public class MessagePresenterImpl implements MessagePresenter {
-    private final MessageAdapterView adapterView;
+    private final MessageAdapter adapterView;
     private final MessageController controller;
 
-    public MessagePresenterImpl(MessageAdapterView view) {
+    public MessagePresenterImpl(MessageAdapter view) {
         this.adapterView = view;
         this.controller = new MessageController(this);
     }

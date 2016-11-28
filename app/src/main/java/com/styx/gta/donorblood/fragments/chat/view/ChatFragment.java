@@ -13,7 +13,7 @@ import com.styx.gta.donorblood.base.BaseFragment;
  */
 public class ChatFragment extends BaseFragment {
     private RecyclerView mMessagesListView;
-    private MessageAdapterViewImpl adapter;
+    private MessageAdapterImpl adapter;
     public static final String TAG = "ChatFragment";
 
     @Override
@@ -25,7 +25,7 @@ public class ChatFragment extends BaseFragment {
     @Override
     protected void setUI(Bundle savedInstanceState) {
         mMessagesListView = (RecyclerView) rootView.findViewById(R.id.chat_recycler_view);
-        adapter = new MessageAdapterViewImpl();
+        adapter = new MessageAdapterImpl();
         adapter.request();
 
         mMessagesListView.setLayoutManager(new LinearLayoutManager(getActivity()));
