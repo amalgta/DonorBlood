@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood.fragments.chat.adapters;
+package com.styx.gta.donorblood.fragments.chat.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,18 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.fragments.chat.presenter.MessagePresenterImpl;
 import com.styx.gta.donorblood.models.Message;
 
 import java.util.ArrayList;
 
-/**
- * Created by Filip on 27/02/2016.
- */
-public class CustomMessageRecyclerAdapter extends RecyclerView.Adapter<CustomMessageRecyclerAdapter.ViewHolder> implements MessageAdapterView {
+public class MessageAdapterViewImpl extends RecyclerView.Adapter<MessageAdapterViewImpl.ViewHolder> implements MessageAdapterView {
     private final ArrayList<Message> mMessageList = new ArrayList<>();
     private final MessagePresenterImpl presenter;
 
-    public CustomMessageRecyclerAdapter() {
+    public MessageAdapterViewImpl() {
         presenter = new MessagePresenterImpl(this);
     }
 

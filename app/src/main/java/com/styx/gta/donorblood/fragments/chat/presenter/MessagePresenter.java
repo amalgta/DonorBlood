@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood.fragments.chat.adapters;
+package com.styx.gta.donorblood.fragments.chat.presenter;
 
 
 import com.styx.gta.donorblood.models.Message;

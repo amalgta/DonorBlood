@@ -1,5 +1,7 @@
-package com.styx.gta.donorblood.fragments.chat.adapters;
+package com.styx.gta.donorblood.fragments.chat.presenter;
 
+import com.styx.gta.donorblood.fragments.chat.view.MessageAdapterView;
+import com.styx.gta.donorblood.fragments.chat.controller.MessageController;
 import com.styx.gta.donorblood.models.Message;
 
 /**
@@ -7,11 +9,11 @@ import com.styx.gta.donorblood.models.Message;
  */
 public class MessagePresenterImpl implements MessagePresenter {
     private final MessageAdapterView adapterView;
-    private final MessageInteractor interactor;
+    private final MessageController controller;
 
     public MessagePresenterImpl(MessageAdapterView view) {
         this.adapterView = view;
-        this.interactor = new MessageInteractor(this);
+        this.controller = new MessageController(this);
     }
 
     @Override
@@ -21,6 +23,6 @@ public class MessagePresenterImpl implements MessagePresenter {
 
     @Override
     public void requestMessages() {
-        interactor.request();
+        controller.request();
     }
 }
