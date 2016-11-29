@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood.fragments.donorlist.view;
+package com.styx.gta.donorblood.fragments.donorlist;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,28 +12,20 @@ import android.widget.TextView;
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
-import com.styx.gta.donorblood.fragments.donorlist.presenter.DonorPresenterImpl;
-import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.util.ArrayList;
 
 /**
- * Created by amal.george on 25-11-2016.
+ * Created by amal.george on 29-11-2016.
  */
 
-public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.ViewHolder> implements DonorAdapter {
-    private static String TAG = "DonorAdapterImpl";
+class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> implements DonorListContract.DonorAdapterView {
+    private final String TAG = "DonorAdapter";
     private final int layoutID = R.layout.item_donor;
-    private final ArrayList<Donor> list = new ArrayList<>();
-    private final DonorPresenterImpl presenter;
+    private ArrayList<Donor>  list = new ArrayList<>();
     private Context context;
-
-    public DonorAdapterImpl(Context context, BloodGroup bloodGroup) {
-        this.presenter = new DonorPresenterImpl(this, bloodGroup);
-        this.context = context;
-    }
 
     @Override
     public void addItem(Donor donor) {
@@ -42,8 +34,8 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
     }
 
     @Override
-    public void request() {
-        presenter.request();
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     @Override

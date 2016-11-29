@@ -10,8 +10,8 @@ import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.AboutFragment;
 import com.styx.gta.donorblood.fragments.donordetail.DonorDetailFragment;
-import com.styx.gta.donorblood.fragments.donorlist.view.DonorListFragment;
-import com.styx.gta.donorblood.fragments.home.view.HomeFragment;
+import com.styx.gta.donorblood.fragments.donorlist.DonorListFragment;
+import com.styx.gta.donorblood.fragments.home.HomeFragment;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 import com.styx.gta.donorblood.utilities.Logger;
 

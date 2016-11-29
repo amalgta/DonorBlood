@@ -19,10 +19,6 @@ public interface Constants {
         String keyObject = "keyObject";
     }
 
-    interface Sex {
-
-    }
-
     interface RequestCodes {
         int REQUEST_CODE = 0x0000;
     }

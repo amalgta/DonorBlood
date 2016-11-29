@@ -12,10 +12,9 @@ public class DonorDetailPresenter implements DonorDetailContract.Presenter {
 
     DonorDetailPresenter(DonorDetailContract.View mView) {
         this.mView = mView;
-        update();
     }
 
-    public void update() {
+    public void request() {
         Bundle mBundle = mView.getViewArguments();
         Donor mDonor = (Donor) mBundle.getSerializable(Constants.FragmentParameters.keyObject);
         mView.bindDonorUI(mDonor);

@@ -24,10 +24,11 @@ import com.styx.gta.donorblood.models.Donor;
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface DonorDetailContract {
+interface DonorDetailContract {
 
     interface View {
         void bindDonorUI(final Donor donor);
+
         Bundle getViewArguments();
     }
 

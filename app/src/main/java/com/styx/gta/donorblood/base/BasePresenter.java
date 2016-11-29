@@ -6,6 +6,6 @@ package com.styx.gta.donorblood.base;
 
 public interface BasePresenter {
 
-    void update();
+    void request();
 
 }
