@@ -29,7 +29,6 @@ public class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Logger.e(TAG, "onCreateView");
         rootView = inflater.inflate(screenLayout, container, false);
         return rootView;
     }
@@ -56,8 +55,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.e(TAG, "onCreate");
-
     }
 
     protected BaseActivity getBase() {
@@ -66,7 +63,6 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Logger.e(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         if (isAdded()) {
             setUI(savedInstanceState);

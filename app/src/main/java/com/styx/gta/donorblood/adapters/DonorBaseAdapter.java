@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood.fragments.donorlist;
+package com.styx.gta.donorblood.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.base.BaseAdapter;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.models.Donor;
@@ -21,15 +22,15 @@ import java.util.ArrayList;
  * Created by amal.george on 29-11-2016.
  */
 
-class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> implements DonorListContract.DonorAdapterView {
-    private final String TAG = "DonorAdapter";
+public class DonorBaseAdapter extends RecyclerView.Adapter<DonorBaseAdapter.ViewHolder> implements BaseAdapter<Donor> {
+    private final String TAG = "DonorBaseAdapter";
     private final int layoutID = R.layout.item_donor;
-    private ArrayList<Donor>  list = new ArrayList<>();
+    private ArrayList<Donor> list = new ArrayList<>();
     private Context context;
 
     @Override
-    public void addItem(Donor donor) {
-        list.add(donor);
+    public void addItem(Donor item) {
+        list.add(item);
         notifyDataSetChanged();
     }
 

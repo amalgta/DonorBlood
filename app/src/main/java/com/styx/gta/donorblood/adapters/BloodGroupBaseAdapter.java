@@ -1,4 +1,4 @@
-package com.styx.gta.donorblood.fragments.home;
+package com.styx.gta.donorblood.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,14 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.base.BaseAdapter;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.models.BloodGroup;
-import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.util.ArrayList;
@@ -24,8 +23,8 @@ import java.util.ArrayList;
  * Created by amal.george on 29-11-2016.
  */
 
-class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.ViewHolder> implements HomeContract.BloodGroupAdapterView{
-    private final String TAG = "BloodGroupAdapter";
+public class BloodGroupBaseAdapter extends RecyclerView.Adapter<BloodGroupBaseAdapter.ViewHolder> implements BaseAdapter<BloodGroup> {
+    private final String TAG = "BloodGroupBaseAdapter";
     private final int layoutID = R.layout.item_blood_group;
     private ArrayList<BloodGroup>  list = new ArrayList<>();
     private Context context;

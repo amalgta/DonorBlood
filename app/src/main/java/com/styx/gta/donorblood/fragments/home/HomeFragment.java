@@ -1,14 +1,13 @@
 package com.styx.gta.donorblood.fragments.home;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.adapters.BloodGroupBaseAdapter;
 import com.styx.gta.donorblood.base.BaseFragment;
-import com.styx.gta.donorblood.ui.widget.FontTextView;
 
 /**
  * Created by amal.george on 24-11-2016.
@@ -17,7 +16,7 @@ import com.styx.gta.donorblood.ui.widget.FontTextView;
 public class HomeFragment extends BaseFragment implements HomeContract.View {
     public static final String TAG = "HomeFragment";
     private HomeContract.Presenter presenter;
-    BloodGroupAdapter adapter = new BloodGroupAdapter();
+    BloodGroupBaseAdapter adapter = new BloodGroupBaseAdapter();
 
     @Override
     protected void initUI() {
@@ -44,7 +43,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    public HomeContract.BloodGroupAdapterView getAdapter() {
+    public BloodGroupBaseAdapter getAdapter() {
         return adapter;
     }
 

@@ -25,8 +25,7 @@ class HomePresenter implements HomeContract.Presenter {
     @Override
     public void request() {
         String dbFile = "Data/BloodGroup";
-        DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
-        final Query query = mMessagesRef;
+        final Query query = Utilities.getDB(dbFile);
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -62,7 +61,6 @@ class HomePresenter implements HomeContract.Presenter {
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Logger.e("TAG",dataSnapshot.toString());
                 mView.setTotalUserCount(dataSnapshot.getChildrenCount());
             }
 
