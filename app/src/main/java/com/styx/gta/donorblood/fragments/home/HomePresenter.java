@@ -8,6 +8,7 @@ import com.google.firebase.database.Query;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
+import com.styx.gta.donorblood.utilities.Logger;
 import com.styx.gta.donorblood.utilities.Utilities;
 
 /**
@@ -17,17 +18,13 @@ import com.styx.gta.donorblood.utilities.Utilities;
 class HomePresenter implements HomeContract.Presenter {
     private HomeContract.View mView;
 
-
-    private final String TAG = "HomePresenter";
-    private final String dbFile = "Data/BloodGroup";
-    private final String fieldParameter = "bloodGroup";
-
     HomePresenter(HomeContract.View mView) {
         this.mView = mView;
     }
 
     @Override
     public void request() {
+        String dbFile = "Data/BloodGroup";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         final Query query = mMessagesRef;
         query.addChildEventListener(new ChildEventListener() {
@@ -58,4 +55,36 @@ class HomePresenter implements HomeContract.Presenter {
         });
     }
 
+    @Override
+    public void requestTotalUserCount() {
+        String dbFile = "Data";
+        final Query query = Utilities.getDB(dbFile).orderByChild("Donor");
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Logger.e("TAG",dataSnapshot.toString());
+                mView.setTotalUserCount(dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

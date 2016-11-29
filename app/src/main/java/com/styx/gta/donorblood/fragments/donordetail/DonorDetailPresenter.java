@@ -7,7 +7,7 @@ import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.Donor;
 
 
-public class DonorDetailPresenter implements DonorDetailContract.Presenter {
+class DonorDetailPresenter implements DonorDetailContract.Presenter {
     private DonorDetailContract.View mView;
 
     DonorDetailPresenter(DonorDetailContract.View mView) {

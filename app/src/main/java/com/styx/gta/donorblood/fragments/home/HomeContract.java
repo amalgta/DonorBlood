@@ -20,8 +20,10 @@ interface HomeContract {
 
     interface View {
         BloodGroupAdapterView getAdapter();
+        void setTotalUserCount(long totalUserCount);
     }
 
     interface Presenter extends BasePresenter {
+        void requestTotalUserCount();
     }
 }
