@@ -1,6 +1,6 @@
 package com.styx.gta.donorblood.fragments.home;
 
-import com.styx.gta.donorblood.adapters.BloodGroupBaseAdapter;
+import com.styx.gta.donorblood.adapters.BloodGroupAdapter;
 import com.styx.gta.donorblood.base.BasePresenter;
 
 /**
@@ -9,7 +9,7 @@ import com.styx.gta.donorblood.base.BasePresenter;
 
 interface HomeContract {
     interface View {
-        BloodGroupBaseAdapter getAdapter();
+        BloodGroupAdapter getAdapter();
         void setTotalUserCount(long totalUserCount);
     }
 

@@ -23,8 +23,8 @@ import java.util.ArrayList;
  * Created by amal.george on 29-11-2016.
  */
 
-public class BloodGroupBaseAdapter extends RecyclerView.Adapter<BloodGroupBaseAdapter.ViewHolder> implements BaseAdapter<BloodGroup> {
-    private final String TAG = "BloodGroupBaseAdapter";
+public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.ViewHolder> implements BaseAdapter<BloodGroup> {
+    private final String TAG = "BloodGroupAdapter";
     private final int layoutID = R.layout.item_blood_group;
     private ArrayList<BloodGroup>  list = new ArrayList<>();
     private Context context;

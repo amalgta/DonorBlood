@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.adapters.BloodGroupBaseAdapter;
+import com.styx.gta.donorblood.adapters.BloodGroupAdapter;
 import com.styx.gta.donorblood.base.BaseFragment;
 
 /**
@@ -16,7 +16,7 @@ import com.styx.gta.donorblood.base.BaseFragment;
 public class HomeFragment extends BaseFragment implements HomeContract.View {
     public static final String TAG = "HomeFragment";
     private HomeContract.Presenter presenter;
-    BloodGroupBaseAdapter adapter = new BloodGroupBaseAdapter();
+    BloodGroupAdapter adapter = new BloodGroupAdapter();
 
     @Override
     protected void initUI() {
@@ -43,7 +43,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    public BloodGroupBaseAdapter getAdapter() {
+    public BloodGroupAdapter getAdapter() {
         return adapter;
     }
 

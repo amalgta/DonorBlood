@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.adapters.DonorBaseAdapter;
+import com.styx.gta.donorblood.adapters.DonorAdapter;
 import com.styx.gta.donorblood.base.BaseFragment;
 
 /**
@@ -15,7 +15,7 @@ import com.styx.gta.donorblood.base.BaseFragment;
 public class DonorListFragment extends BaseFragment implements DonorListContract.View {
     public static final String TAG = "DonorListFragment";
     private DonorListContract.Presenter presenter;
-    DonorBaseAdapter adapter = new DonorBaseAdapter();
+    DonorAdapter adapter = new DonorAdapter();
 
     @Override
     protected void initUI() {
@@ -39,7 +39,7 @@ public class DonorListFragment extends BaseFragment implements DonorListContract
     }
 
     @Override
-    public DonorBaseAdapter getAdapter() {
+    public DonorAdapter getAdapter() {
         return adapter;
     }
 

@@ -22,8 +22,8 @@ import java.util.ArrayList;
  * Created by amal.george on 29-11-2016.
  */
 
-public class DonorBaseAdapter extends RecyclerView.Adapter<DonorBaseAdapter.ViewHolder> implements BaseAdapter<Donor> {
-    private final String TAG = "DonorBaseAdapter";
+public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> implements BaseAdapter<Donor> {
+    private final String TAG = "DonorAdapter";
     private final int layoutID = R.layout.item_donor;
     private ArrayList<Donor> list = new ArrayList<>();
     private Context context;
