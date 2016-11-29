@@ -1,21 +1,15 @@
 package com.styx.gta.donorblood.base;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.styx.gta.donorblood.R;
-import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.AboutFragment;
-import com.styx.gta.donorblood.fragments.DonorDetailFragment;
+import com.styx.gta.donorblood.fragments.donordetail.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.donorlist.view.DonorListFragment;
 import com.styx.gta.donorblood.fragments.home.view.HomeFragment;
 import com.styx.gta.donorblood.interfaces.UserActionListener;

@@ -30,11 +30,6 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
     private final DonorPresenterImpl presenter;
     private Context context;
 
-    public DonorAdapterImpl(Context context) {
-        this.presenter = new DonorPresenterImpl(this);
-        this.context = context;
-    }
-
     public DonorAdapterImpl(Context context, BloodGroup bloodGroup) {
         this.presenter = new DonorPresenterImpl(this, bloodGroup);
         this.context = context;
@@ -71,7 +66,7 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_name, tv_age, tv_sex, tv_contact, tv_blood_group;
-        public ImageView iv_call_icon, icon_user;
+        public ImageView iv_call_icon, iv_user;
 
         public ViewHolder(View view) {
             super(view);
@@ -81,7 +76,7 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
             tv_contact = (TextView) view.findViewById(R.id.tv_contact);
             tv_blood_group = (TextView) view.findViewById(R.id.tv_blood_group);
             iv_call_icon = (ImageView) view.findViewById(R.id.iv_call_icon);
-            icon_user = (ImageView) view.findViewById(R.id.icon_user);
+            iv_user = (ImageView) view.findViewById(R.id.iv_user);
         }
 
         public void bind(final Donor thisDonor) {
@@ -95,7 +90,7 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
             });
             tv_sex.setText(thisDonor.getSex());
             if (thisDonor.getSex().equalsIgnoreCase(Donor.Sex.female)) {
-                icon_user.setImageResource(R.drawable.ic_female);
+                iv_user.setImageResource(R.drawable.ic_female);
             }
             tv_contact.setText(thisDonor.getContact());
             tv_blood_group.setText(thisDonor.getBloodGroupCanonicalName());
@@ -103,7 +98,7 @@ public class DonorAdapterImpl extends RecyclerView.Adapter<DonorAdapterImpl.View
                 @Override
                 public void onClick(View v) {
                     Bundle mBundle = new Bundle();
-                    mBundle.putString(Constants.FragmentParameters.objectID, thisDonor.getObjectID());
+                    mBundle.putSerializable(Constants.FragmentParameters.keyObject, thisDonor);
                     Utilities.getApp(context).doUserAction(UserAction.DONOR_DETAIL_FRAGMENT, mBundle);
                 }
             });
