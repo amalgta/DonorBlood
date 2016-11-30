@@ -57,7 +57,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_name, tv_age, tv_sex, tv_contact, tv_blood_group;
         public ImageView iv_call_icon, iv_user;
 
@@ -82,9 +82,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
                 }
             });
             tv_sex.setText(thisDonor.getSex());
-            if (thisDonor.getSex().equalsIgnoreCase(Donor.Sex.female)) {
-                iv_user.setImageResource(R.drawable.ic_female);
-            }
+            iv_user.setImageResource(((thisDonor.getSex().equalsIgnoreCase(Donor.Sex.male)) ? (R.drawable.ic_male) : (R.drawable.ic_female)));
             tv_contact.setText(thisDonor.getContact());
             tv_blood_group.setText(thisDonor.getBloodGroupCanonicalName());
             this.itemView.setOnClickListener(new View.OnClickListener() {
