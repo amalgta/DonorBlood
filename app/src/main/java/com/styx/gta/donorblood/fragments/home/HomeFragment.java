@@ -21,7 +21,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     protected void initUI() {
         setRoot(true);
-        setScreenTitle("HomeFragment");
+        setScreenTitle("Donor Blood");
         setScreenLayout(R.layout.fragment_home);
     }
 

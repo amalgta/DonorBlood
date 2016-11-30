@@ -28,7 +28,7 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
 
     @Override
     protected void initUI() {
-        setScreenTitle("DonorDetailFragment");
+        setScreenTitle("Donor Details");
         setScreenLayout(R.layout.fragment_donor_detail);
     }
 

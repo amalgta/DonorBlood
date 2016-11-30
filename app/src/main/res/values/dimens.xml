@@ -18,7 +18,7 @@
     <!--Margin-->
     <dimen name="margin_mini">5dp</dimen>
     <dimen name="margin_default">10dp</dimen>
-    <dimen name="margin_default_indent">10dp</dimen>
+    <dimen name="margin_default_indent">6dp</dimen>
     <!--Font Sizes-->
     <dimen name="font_12">12sp</dimen>
     <dimen name="font_14">14sp</dimen>

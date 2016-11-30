@@ -19,7 +19,7 @@ public class DonorListFragment extends BaseFragment implements DonorListContract
 
     @Override
     protected void initUI() {
-        setScreenTitle("DonorListFragment");
+        setScreenTitle("Donor List");
         setScreenLayout(R.layout.fragment_donor_list);
     }
 

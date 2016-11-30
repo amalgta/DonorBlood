@@ -59,6 +59,8 @@ public class HomeActivity extends BaseActivity
 
         if (id == R.id.nav_camera) {
             doUserAction(UserAction.HOME_SCREEN, new Bundle());
+        } else if (id == R.id.nav_search) {
+            doUserAction(UserAction.SEARCH_FRAGMENT, new Bundle());
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
