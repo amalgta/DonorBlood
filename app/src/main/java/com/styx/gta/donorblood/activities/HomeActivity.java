@@ -20,20 +20,10 @@ import com.styx.gta.donorblood.constants.UserAction;
 
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    boolean mSearchActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Check if first run
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        final boolean isFirstRun = prefs.getBoolean(getString(R.string.pref_is_firstrun), true);
-        if (isFirstRun) {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_is_firstrun), Boolean.FALSE);
-            edit.commit();
-            showIntro();
-        }
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,11 +37,6 @@ public class HomeActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         doUserAction(UserAction.HOME_SCREEN, new Bundle());
-    }
-
-    private void showIntro() {
-        Intent mHome = new Intent(HomeActivity.this, SplashScreenActivity.class);
-        startActivity(mHome);
     }
 
     @Override

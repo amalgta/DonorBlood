@@ -7,16 +7,5 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_launcher" />
-
-    <com.styx.gta.donorblood.ui.widget.FontTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="DONOR BLOOD "
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:font="@string/font_gothic_bold" />
+        android:src="@drawable/im_launcher" />
 </RelativeLayout>
