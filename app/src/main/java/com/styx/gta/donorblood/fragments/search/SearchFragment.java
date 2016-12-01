@@ -37,12 +37,8 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
         sp_blood_group = (Spinner) rootView.findViewById(R.id.sp_blood_group);
         sp_blood_group.setAdapter(bloodGroupAdapter);
         new AlertDialog.Builder(getContext()).setTitle("Search Not Implemented").setMessage("I am restricted by the technology of this time, but I will implement search one day").setCancelable(true).show();
-
-    }
-
-    @Override
-    protected void doOnce() {
         presenter.request();
+
     }
 
     @Override

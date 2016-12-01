@@ -17,7 +17,6 @@ public class BaseFragment extends Fragment {
     final String TAG = "BaseFragment";
     String screenTitle;
     int screenLayout;
-    boolean alreadyLoaded = false;
     protected View rootView;
     boolean isRoot;
 
@@ -48,9 +47,6 @@ public class BaseFragment extends Fragment {
     protected void setUI(Bundle savedInstanceState) {
     }
 
-    protected void doOnce() {
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,10 +62,6 @@ public class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if (isAdded()) {
             setUI(savedInstanceState);
-            if (!alreadyLoaded) {
-                alreadyLoaded = true;
-                doOnce();
-            }
         }
     }
 

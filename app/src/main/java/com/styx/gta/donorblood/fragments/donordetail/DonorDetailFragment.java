@@ -35,6 +35,8 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
     @Override
     protected void setUI(Bundle savedInstanceState) {
         presenter = new DonorDetailPresenter(this);
+        presenter.request();
+
     }
 
     @Override
@@ -75,11 +77,7 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
                 startActivity(sendIntent);
             }
         });
-    }
 
-    @Override
-    protected void doOnce() {
-        presenter.request();
     }
 
     @Override

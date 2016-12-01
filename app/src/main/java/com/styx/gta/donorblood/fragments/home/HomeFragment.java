@@ -33,13 +33,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         RecyclerView mRecyclerView = ((RecyclerView) rootView.findViewById(R.id.rv_bloodgroup));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
-
         presenter.requestTotalUserCount();
-    }
-
-    @Override
-    protected void doOnce() {
         presenter.request();
+
     }
 
     @Override
