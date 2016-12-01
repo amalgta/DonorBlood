@@ -15,7 +15,7 @@ import com.styx.gta.donorblood.base.BaseFragment;
 public class DonorListFragment extends BaseFragment implements DonorListContract.View {
     public static final String TAG = "DonorListFragment";
     private DonorListContract.Presenter presenter;
-    DonorAdapter adapter = new DonorAdapter();
+    DonorAdapter adapter;
 
     @Override
     protected void initUI() {
@@ -26,10 +26,10 @@ public class DonorListFragment extends BaseFragment implements DonorListContract
     @Override
     protected void setUI(Bundle savedInstanceState) {
         presenter = new DonorListPresenter(this);
+        adapter = new DonorAdapter(getContext());
         RecyclerView mRecyclerView = ((RecyclerView) rootView.findViewById(R.id.rv_donor_list));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        adapter.setContext(getContext());
         mRecyclerView.setAdapter(adapter);
     }
 

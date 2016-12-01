@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.ViewHolder> implements BaseAdapter<BloodGroup> {
     private final String TAG = "BloodGroupAdapter";
     private final int layoutID = R.layout.item_blood_group;
-    private ArrayList<BloodGroup>  list = new ArrayList<>();
+    private ArrayList<BloodGroup> list = new ArrayList<>();
     private Context context;
 
     @Override
@@ -35,8 +35,7 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
         notifyDataSetChanged();
     }
 
-    @Override
-    public void setContext(Context context) {
+    public BloodGroupAdapter(Context context) {
         this.context = context;
     }
 
@@ -70,6 +69,7 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
             ll_background = (CardView) view.findViewById(R.id.cv_background);
             tv_total_count_text = (TextView) view.findViewById(R.id.tv_total_count_text);
         }
+
         public void bind(final BloodGroup thisBloodGroup) {
             tv_name.setText(thisBloodGroup.getName());
             ll_background.setBackgroundColor(Color.parseColor(thisBloodGroup.getThemeColor()));

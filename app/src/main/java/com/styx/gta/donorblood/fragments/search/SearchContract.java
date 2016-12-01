@@ -1,9 +1,8 @@
 package com.styx.gta.donorblood.fragments.search;
 
-import com.styx.gta.donorblood.adapters.BloodGroupAdapter;
-import com.styx.gta.donorblood.base.BasePresenter;
+import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
+import com.styx.gta.donorblood.base.BasePresenter;
 
 /**
  * Created by amal.george on 29-11-2016.
@@ -11,10 +10,9 @@ import java.util.ArrayList;
 
 interface SearchContract {
     interface View {
-        void getUserList(ArrayList<String> list);
+        ArrayAdapter<String> getBloodGroupAdapter();
     }
 
     interface Presenter extends BasePresenter {
-        void requestUserList(String mName);
     }
 }

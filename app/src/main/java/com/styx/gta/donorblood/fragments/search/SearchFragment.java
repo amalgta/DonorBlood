@@ -1,15 +1,17 @@
 package com.styx.gta.donorblood.fragments.search;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by amal.george on 24-11-2016.
@@ -18,45 +20,33 @@ import java.util.ArrayList;
 public class SearchFragment extends BaseFragment implements SearchContract.View {
     public static final String TAG = "SearchFragment";
     private SearchContract.Presenter presenter;
-    ArrayList<String> string;
+    Spinner sp_blood_group;
+    ArrayAdapter bloodGroupAdapter, nameAdapter;
 
     @Override
     protected void initUI() {
         setScreenTitle("Search");
         setScreenLayout(R.layout.fragment_search);
-
     }
 
     @Override
     protected void setUI(Bundle savedInstanceState) {
         presenter = new SearchPresenter(this);
+        bloodGroupAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item);
+        bloodGroupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_blood_group = (Spinner) rootView.findViewById(R.id.sp_blood_group);
+        sp_blood_group.setAdapter(bloodGroupAdapter);
+        new AlertDialog.Builder(getContext()).setTitle("Search Not Implemented").setMessage("I am restricted by the technology of this time, but I will implement search one day").setCancelable(true).show();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_dropdown_item_1line, string);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                rootView.findViewById(R.id.countries_list);
-        textView.setAdapter(adapter);
-        textView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                presenter.requestUserList("A");
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
+    @Override
+    protected void doOnce() {
+        presenter.request();
+    }
 
     @Override
-    public void getUserList(ArrayList<String> mList) {
-        this.string = mList;
+    public ArrayAdapter<String> getBloodGroupAdapter() {
+        return bloodGroupAdapter;
     }
 }

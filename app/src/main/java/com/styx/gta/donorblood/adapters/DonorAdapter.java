@@ -24,19 +24,18 @@ import java.util.ArrayList;
 
 public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> implements BaseAdapter<Donor> {
     private final String TAG = "DonorAdapter";
-    private final int layoutID = R.layout.item_donor;
+    private static final int layoutID = R.layout.item_donor;
     private ArrayList<Donor> list = new ArrayList<>();
     private Context context;
+
+    public DonorAdapter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public void addItem(Donor item) {
         list.add(item);
         notifyDataSetChanged();
-    }
-
-    @Override
-    public void setContext(Context context) {
-        this.context = context;
     }
 
     @Override

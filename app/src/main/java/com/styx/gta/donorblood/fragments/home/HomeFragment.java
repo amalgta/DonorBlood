@@ -16,7 +16,7 @@ import com.styx.gta.donorblood.base.BaseFragment;
 public class HomeFragment extends BaseFragment implements HomeContract.View {
     public static final String TAG = "HomeFragment";
     private HomeContract.Presenter presenter;
-    BloodGroupAdapter adapter = new BloodGroupAdapter();
+    BloodGroupAdapter adapter;
 
     @Override
     protected void initUI() {
@@ -28,10 +28,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     protected void setUI(Bundle savedInstanceState) {
         presenter = new HomePresenter(this);
+        adapter= new BloodGroupAdapter(getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         RecyclerView mRecyclerView = ((RecyclerView) rootView.findViewById(R.id.rv_bloodgroup));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        adapter.setContext(getContext());
         mRecyclerView.setAdapter(adapter);
 
         presenter.requestTotalUserCount();
