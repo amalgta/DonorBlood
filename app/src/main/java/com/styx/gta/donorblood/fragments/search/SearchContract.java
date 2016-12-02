@@ -11,8 +11,10 @@ import com.styx.gta.donorblood.base.BasePresenter;
 interface SearchContract {
     interface View {
         ArrayAdapter<String> getBloodGroupAdapter();
+        void showResult(String result);
     }
 
     interface Presenter extends BasePresenter {
+        void searchDonor(String bloodGroupObjectID,int minAge,int maxAge,String address);
     }
 }
