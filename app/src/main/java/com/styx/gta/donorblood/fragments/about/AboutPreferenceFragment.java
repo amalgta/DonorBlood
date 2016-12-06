@@ -11,13 +11,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.base.BaseActivity;
+import com.styx.gta.donorblood.constants.UserAction;
 
 /**
  * Created by amal.george on 06-12-2016.
  */
 
 public class AboutPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener{
-    private static final int MAX_CLICKS_TO_UNLOCK_EGG = 7;
+    private static final int MAX_CLICKS_TO_UNLOCK_REG = 7;
 
     private static final String TAG = "AboutPreferenceFragment";
 
@@ -53,12 +55,13 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
     }
 
     @Override public boolean onPreferenceClick(Preference preference) {
-        if (preference == prefVersion) {
-            if (++numTimesVersionClicked == MAX_CLICKS_TO_UNLOCK_EGG) {
+        if (preference == findPreference("copyright")) {
+            if (++numTimesVersionClicked == MAX_CLICKS_TO_UNLOCK_REG) {
                 numTimesVersionClicked = 0;
-               // new EasterEggTask(getActivity()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                Toast.makeText(getActivity(), "Taking you to admin panel", Toast.LENGTH_SHORT).show();
+                (((BaseActivity)getActivity())).doUserAction(UserAction.ADD_DATA_FRAGMENT,new Bundle());
             }
-        } else if( (preference==findPreference("copyright")) || (preference==findPreference("legal")) || (preference==findPreference("open_source_licenses")) || (preference==findPreference("terms_of_service")) || (preference==findPreference("privacy_policy")) ) {
+        } else if( (preference==findPreference("legal")) || (preference==findPreference("open_source_licenses")) || (preference==findPreference("terms_of_service")) || (preference==findPreference("privacy_policy")) ) {
             Toast.makeText(getActivity().getApplicationContext(), preference.getTitle().toString()+" Being written.", Toast.LENGTH_LONG).show();
         }
         return true;

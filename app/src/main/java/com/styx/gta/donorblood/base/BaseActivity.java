@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.constants.UserAction;
 import com.styx.gta.donorblood.fragments.about.AboutFragment;
+import com.styx.gta.donorblood.fragments.adddata.AddDataFragment;
 import com.styx.gta.donorblood.fragments.donordetail.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.donorlist.DonorListFragment;
 import com.styx.gta.donorblood.fragments.home.HomeFragment;
@@ -109,6 +110,17 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                         mFragment = new AboutFragment();
                         mFragment.setArguments(mBundle);
                         addFragment(mLayout, mFragment, AboutFragment.TAG);
+                    }
+                    break;
+                case ADD_DATA_FRAGMENT:
+                    if (isFragmentExistsInBackStack(AddDataFragment.TAG)) {
+                        if (getTopFragment() instanceof AddDataFragment)
+                            return;
+                        popBackStack(AddDataFragment.TAG, 0);
+                    } else {
+                        mFragment = new AddDataFragment();
+                        mFragment.setArguments(mBundle);
+                        addFragment(mLayout, mFragment, AddDataFragment.TAG);
                     }
                     break;
             }

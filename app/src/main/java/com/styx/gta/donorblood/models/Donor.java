@@ -12,7 +12,6 @@ import java.io.Serializable;
 public class Donor extends BaseModel implements Serializable {
     private String address, bloodGroupCanonicalName, contact, dob, name, sex;
     private String bloodGroup;
-
     public Donor() {
     }
 

@@ -26,7 +26,7 @@
 
     <!--About Screen-->
     <string name="copyright">Copyright</string>
-    <string name="copyright_summary" translatable="false">2016, Jared Rummler</string>
+    <string name="copyright_summary" translatable="false">2016, Amal Thomas</string>
     <string name="beta_program_summary">Become a beta tester</string>
     <string name="open_source_licenses">Open source licenses</string>
     <string name="follow_us_on_twitter">Follow us on Twitter</string>
