@@ -1,6 +1,7 @@
-package com.styx.gta.donorblood.fragments;
+package com.styx.gta.donorblood.fragments.about;
 
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;

@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.constants.UserAction;
-import com.styx.gta.donorblood.fragments.AboutFragment;
+import com.styx.gta.donorblood.fragments.about.AboutFragment;
 import com.styx.gta.donorblood.fragments.donordetail.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.donorlist.DonorListFragment;
 import com.styx.gta.donorblood.fragments.home.HomeFragment;
@@ -43,8 +45,20 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
         this.getSupportFragmentManager().popBackStack(tag, flag);
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (getTopFragment().isRoot()) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public BaseFragment getTopFragment() {
-        return ((BaseFragment) this.getSupportFragmentManager().findFragmentById(R.id.fl_content));
+        return (BaseFragment) this.getSupportFragmentManager().findFragmentById(R.id.fl_content);
     }
 
     @Override

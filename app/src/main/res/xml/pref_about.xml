@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2015 Jared Rummler <jared.rummler@gmail.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="about"
+        android:title="@string/about">
+        <Preference
+            android:key="version"
+            android:title="@string/version"/>
+        <Preference
+            android:key="rate_the_app"
+            android:summary="@string/five_stars"
+            android:title="@string/rate_the_app"/>
+        <Preference
+            android:key="beta_program"
+            android:summary="@string/beta_program_summary"
+            android:title="@string/beta_program"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="social"
+        android:title="@string/social">
+        <Preference
+            android:icon="@mipmap/ic_launcher"
+            android:key="facebook"
+            android:summary="@string/follow_us_on_facebook"
+            android:title="@string/facebook"/>
+        <Preference
+            android:icon="@mipmap/ic_launcher"
+            android:key="twitter"
+            android:summary="@string/follow_us_on_twitter"
+            android:title="@string/twitter"/>
+        <Preference
+            android:icon="@mipmap/ic_launcher"
+            android:key="google_plus"
+            android:summary="@string/follow_us_on_google_plus"
+            android:title="@string/google_plus"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="legal"
+        android:title="@string/legal">
+        <Preference
+            android:key="copyright"
+            android:summary="@string/copyright_summary"
+            android:title="@string/copyright"/>
+        <Preference
+            android:key="open_source_licenses"
+            android:title="@string/open_source_licenses"/>
+        <Preference
+            android:key="terms_of_service"
+            android:title="@string/terms_of_service"/>
+        <Preference
+            android:key="privacy_policy"
+            android:title="@string/privacy_policy"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -39,18 +39,6 @@ public class HomeActivity extends BaseActivity
         doUserAction(UserAction.HOME_SCREEN, new Bundle());
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (getTopFragment().isRoot()) {
-            finish();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -59,6 +47,8 @@ public class HomeActivity extends BaseActivity
 
         if (id == R.id.nav_camera) {
             doUserAction(UserAction.HOME_SCREEN, new Bundle());
+        }else if(id==R.id.nav_search){
+            doUserAction(UserAction.ABOUT_FRAGMENT,new Bundle( ));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

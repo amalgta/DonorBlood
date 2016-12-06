@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.styx.gta.donorblood.utilities.Logger;
-
 /**
  * Created by amal.george on 24-11-2016.
  */
