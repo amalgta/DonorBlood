@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
-import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.utilities.Utilities;
 
@@ -42,7 +41,7 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
     @Override
     public void bindDonorUI(final Donor donor) {
         ((TextView) rootView.findViewById(R.id.tv_name)).setText(donor.getName());
-        ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.getAge(donor.getDob())));
+        ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.findAge(donor.getDob())));
         ((TextView) rootView.findViewById(R.id.tv_contact)).setText(donor.getContact());
         ((TextView) rootView.findViewById(R.id.tv_sex)).setText(donor.getSex());
         ((ImageView) rootView.findViewById(R.id.iv_user)).setImageResource(((donor.getSex().equalsIgnoreCase(Donor.Sex.male)) ? (R.drawable.ic_male) : (R.drawable.ic_female)));

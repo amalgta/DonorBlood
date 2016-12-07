@@ -73,7 +73,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
 
         public void bind(final Donor thisDonor) {
             tv_name.setText(thisDonor.getName());
-            tv_age.setText(String.valueOf(Utilities.getAge(thisDonor.getDob())));
+            tv_age.setText(String.valueOf(Utilities.findAge(thisDonor.getDob())));
             iv_call_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -12,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.styx.gta.donorblood.activities.HomeActivity;
 import com.styx.gta.donorblood.constants.Constants;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.Calendar;
 
@@ -40,8 +42,8 @@ public class Utilities {
         return FirebaseDatabase.getInstance().getReference().child(child);
     }
 
-    public static int getAge(String dob) {
-        final String TAG = "getAge";
+    public static int findAge(String dob) {
+        final String TAG = "findAge";
         Calendar mDob = Calendar.getInstance();
         try {
             mDob.setTime(Constants.simpleDateFormat.parse(dob));
@@ -51,5 +53,29 @@ public class Utilities {
         }
         Calendar mToday = Calendar.getInstance();
         return (mToday.get(Calendar.YEAR) - mDob.get(Calendar.YEAR));
+    }
+    public static String getMD5(String payload)  {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(payload.getBytes());
+            byte byteData[] = md.digest();
+            //convert the byte to hex format method 1
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < byteData.length; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //convert the byte to hex format method 2
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < byteData.length; i++) {
+                String hex = Integer.toHexString(0xff & byteData[i]);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+
+        }catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

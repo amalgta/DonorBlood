@@ -25,11 +25,8 @@ import com.styx.gta.donorblood.base.BasePresenter;
 interface AddDataContract {
 
     interface View {
-        void showMD5(String text);
-        void authenticationResult(boolean access);
     }
 
     interface Presenter extends BasePresenter {
-        void authenticateUser(String mAccessCode);
     }
 }
