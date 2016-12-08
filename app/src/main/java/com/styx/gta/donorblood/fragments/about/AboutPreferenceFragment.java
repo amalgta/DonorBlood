@@ -26,7 +26,7 @@ import com.styx.gta.donorblood.constants.UserAction;
  */
 
 public class AboutPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, AboutPreferenceContract.View {
-    private static final int MAX_CLICKS_TO_UNLOCK_REG = 7;
+    private static final int MAX_CLICKS_TO_UNLOCK_REG = 1;
 
     private static final String TAG = "AboutPreferenceFragment";
 
