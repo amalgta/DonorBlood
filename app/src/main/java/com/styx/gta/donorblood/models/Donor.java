@@ -10,9 +10,19 @@ import java.io.Serializable;
  */
 
 public class Donor extends BaseModel implements Serializable {
-    private String address, bloodGroupCanonicalName, contact, dob, name, sex;
-    private String bloodGroup;
+    private String address, bloodGroupCanonicalName, contact, dob, name, sex, bloodGroup;
+
     public Donor() {
+    }
+
+    public Donor(String address, String bloodGroupCanonicalName, String contact, String dob, String name, String sex, String bloodGroup) {
+        this.address = address;
+        this.bloodGroupCanonicalName = bloodGroupCanonicalName;
+        this.contact = contact;
+        this.dob = dob;
+        this.name = name;
+        this.sex = sex;
+        this.bloodGroup = bloodGroup;
     }
 
     public interface Sex {

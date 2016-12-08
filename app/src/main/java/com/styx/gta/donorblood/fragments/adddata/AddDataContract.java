@@ -25,7 +25,7 @@ import com.styx.gta.donorblood.base.BasePresenter;
 interface AddDataContract {
 
     interface View {
-        void addGroupItem(String value,String name);
+        void addGroupItem(String value, String name);
     }
 
     interface Presenter extends BasePresenter {

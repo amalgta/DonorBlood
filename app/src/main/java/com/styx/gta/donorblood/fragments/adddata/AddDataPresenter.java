@@ -35,8 +35,8 @@ class AddDataPresenter implements AddDataContract.Presenter {
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                BloodGroup bloodGroup=dataSnapshot.getValue(BloodGroup.class);
-                view.addGroupItem(bloodGroup.getObjectID(),bloodGroup.getName());
+                BloodGroup bloodGroup = dataSnapshot.getValue(BloodGroup.class);
+                view.addGroupItem(bloodGroup.getObjectID(), bloodGroup.getName());
             }
 
             @Override
