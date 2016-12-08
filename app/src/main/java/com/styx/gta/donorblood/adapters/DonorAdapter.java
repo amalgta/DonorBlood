@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> implements BaseAdapter<Donor> {
     private final String TAG = "DonorAdapter";
-    private static final int layoutID = R.layout.item_donor;
+    private static final int layoutID = R.layout.item_donor_min;
     private ArrayList<Donor> list = new ArrayList<>();
     private Context context;
 

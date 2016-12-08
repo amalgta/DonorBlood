@@ -87,7 +87,6 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <RadioGroup
-                        android:id="@+id/radioGroup"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -95,7 +94,7 @@
                         android:weightSum="2">
 
                         <RadioButton
-                            android:id="@+id/radioButton"
+                            android:id="@+id/radio_male"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
@@ -104,7 +103,7 @@
                             android:text="Male" />
 
                         <RadioButton
-                            android:id="@+id/radioButton2"
+                            android:id="@+id/radio_female"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
@@ -133,14 +132,26 @@
                         android:background="@color/white"
                         android:text="Date of Birth" />
 
-
                 </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:maxLines="4" />
+                </android.support.design.widget.TextInputLayout>
+
                 <Button
                     android:id="@+id/bt_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUBMIT"
-                    android:layout_gravity="end"/>
+                    android:layout_gravity="end"
+                    android:text="SUBMIT" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </ScrollView>

@@ -15,16 +15,6 @@ public class Donor extends BaseModel implements Serializable {
     public Donor() {
     }
 
-    public Donor(String address, String bloodGroupCanonicalName, String contact, String dob, String name, String sex, String bloodGroup) {
-        this.address = address;
-        this.bloodGroupCanonicalName = bloodGroupCanonicalName;
-        this.contact = contact;
-        this.dob = dob;
-        this.name = name;
-        this.sex = sex;
-        this.bloodGroup = bloodGroup;
-    }
-
     public interface Sex {
         String male = "Male";
         String female = "Female";
@@ -56,5 +46,33 @@ public class Donor extends BaseModel implements Serializable {
 
     public String getSex() {
         return sex;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public void setBloodGroupCanonicalName(String bloodGroupCanonicalName) {
+        this.bloodGroupCanonicalName = bloodGroupCanonicalName;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

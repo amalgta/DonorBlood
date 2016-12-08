@@ -1,15 +1,21 @@
 package com.styx.gta.donorblood.fragments.adddata;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
@@ -23,6 +29,7 @@ import com.styx.gta.donorblood.ui.widget.FontTextView;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by amal.george on 24-11-2016.
@@ -31,9 +38,11 @@ import java.util.Map;
 public class AddDataFragment extends BaseFragment implements AddDataContract.View {
     public static final String TAG = "AddDataFragment";
     private AddDataContract.Presenter presenter;
-    private Spinner spinner;
+    private Spinner sp_blood_group;
     private Button bt_dob, bt_submit;
-    private ArrayAdapter<String> adapter;
+    private EditText et_name, et_number, et_address;
+    private RadioButton radio_male, radio_female;
+    private ArrayAdapter<String> sp_blood_group_adapter;
     private HashMap<String, String> bloodGroupMap;
 
     @Override
@@ -44,19 +53,30 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
 
     @Override
     protected void setUI(Bundle savedInstanceState) {
-        presenter = new AddDataPresenter(this);
-        presenter.requestBloodGroups();
-        spinner = (Spinner) rootView.findViewById(R.id.sp_blood_group);
+        sp_blood_group = (Spinner) rootView.findViewById(R.id.sp_blood_group);
         bt_dob = (Button) rootView.findViewById(R.id.bt_dob);
         bt_submit = (Button) rootView.findViewById(R.id.bt_submit);
+        et_name = (EditText) rootView.findViewById(R.id.et_name);
+        et_address = (EditText) rootView.findViewById(R.id.et_address);
+        et_number = (EditText) rootView.findViewById(R.id.et_number);
+        radio_female = (RadioButton) rootView.findViewById(R.id.radio_female);
+        radio_male = (RadioButton) rootView.findViewById(R.id.radio_male);
+
+        bloodGroupMap = new HashMap<>();
+        presenter = new AddDataPresenter(this);
+        sp_blood_group_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item);
+        sp_blood_group.setAdapter(sp_blood_group_adapter);
+
+        presenter.requestBloodGroups();
+
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (doValidate()) {
                     showCard(parseDonor());
+                } else {
+                    showError();
                 }
-                Calendar mc = (Calendar) bt_dob.getTag();
-                Toast.makeText(getContext(), mc.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         bt_dob.setOnClickListener(new View.OnClickListener() {
@@ -65,15 +85,12 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
                 showDatePicker(view);
             }
         });
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item);
-        bloodGroupMap = new HashMap<>();
-        spinner.setAdapter(adapter);
     }
 
     @Override
     public void addGroupItem(String value, String name) {
         bloodGroupMap.put(value, name);
-        adapter.add(name);
+        sp_blood_group_adapter.add(name);
     }
 
     void showDatePicker(final View view) {
@@ -88,14 +105,62 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    boolean doValidate() {
-        boolean result = true;
-        return result;
-    }
-    void showCard(Donor donor){
 
+    void showCard(Donor donor) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(donor.getName());
+
+        final View dialogueView = LayoutInflater.from(getContext()).inflate(R.layout.item_donor_expanded, null);
+        builder.setView(dialogueView);
+        builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.show();
     }
-    Donor parseDonor(){
-        return new Donor();
+
+    public boolean doValidate() {
+        try {
+            //TODO Edittext have error indication provisions use it here
+            if (sp_blood_group.getSelectedItem() == null)
+                return false;
+            if ((bt_dob.getTag()) == null)
+                return false;
+            if (et_name.getText() == null && et_name.getText().length() > 0)
+                return false;
+            if (et_number.getText() == null && et_name.getText().length() > 0)
+                return false;
+            if (et_address.getText() == null && et_name.getText().length() > 0)
+                return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    Donor parseDonor() {
+        Donor donor = new Donor();
+        donor.setName(et_name.getText().toString());
+        donor.setAddress(et_address.getText().toString());
+        donor.setBloodGroup(sp_blood_group.getSelectedItem().toString());
+        donor.setBloodGroupCanonicalName(bloodGroupMap.get(sp_blood_group.getSelectedItem().toString()));
+        donor.setContact(et_number.getText().toString());
+        donor.setDob(bt_dob.getTag().toString());
+        if (radio_female.isSelected())
+            donor.setSex(Donor.Sex.male);
+        else
+            donor.setSex(Donor.Sex.female);
+        return donor;
+    }
+
+    void showError() {
+        Toast.makeText(getContext(), "Please check all fields", Toast.LENGTH_SHORT).show();
     }
 }

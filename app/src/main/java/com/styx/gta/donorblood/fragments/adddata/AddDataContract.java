@@ -30,5 +30,6 @@ interface AddDataContract {
 
     interface Presenter extends BasePresenter {
         void requestBloodGroups();
+
     }
 }
