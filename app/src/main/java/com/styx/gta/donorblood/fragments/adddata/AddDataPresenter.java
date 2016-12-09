@@ -72,8 +72,30 @@ class AddDataPresenter implements AddDataContract.Presenter {
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         DatabaseReference newDonor = mMessagesRef.push();
         donor.setObjectID(newDonor.getKey());
-        newDonor.setValue(donor);
+        addNewDonor(newDonor, donor);
         incrementBloodGroupDonorCount(donor.getBloodGroup());
+    }
+
+    void addNewDonor(DatabaseReference ref, Donor donor) {
+//TODO
+/**
+        ref.child(donor.getObjectID()).runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Donor donor = mutableData.getValue(Donor.class);
+                if (bloodGroup == null) {
+                    return Transaction.success(mutableData);
+                }
+                mutableData.setValue(donor);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+            }
+        });
+        **/
     }
 
     private void incrementBloodGroupDonorCount(String groupName) {
