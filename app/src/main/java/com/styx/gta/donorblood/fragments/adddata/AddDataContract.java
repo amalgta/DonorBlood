@@ -17,8 +17,6 @@
 package com.styx.gta.donorblood.fragments.adddata;
 
 
-import android.view.View;
-
 import com.styx.gta.donorblood.base.BasePresenter;
 import com.styx.gta.donorblood.models.Donor;
 

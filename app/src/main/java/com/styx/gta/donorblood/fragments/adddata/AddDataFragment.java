@@ -4,16 +4,11 @@ import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,22 +16,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
-import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
-import com.styx.gta.donorblood.ui.widget.FontTextView;
 import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by amal.george on 24-11-2016.
