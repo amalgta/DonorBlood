@@ -5,6 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
@@ -56,27 +57,12 @@ class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void requestTotalUserCount() {
-        String dbFile = "Data";
-        final Query query = Utilities.getDB(dbFile).orderByChild("Donor");
-        query.addChildEventListener(new ChildEventListener() {
+        String dbFile = "Data/Donor";
+        final Query query = Utilities.getDB(dbFile);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 mView.setTotalUserCount(dataSnapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override

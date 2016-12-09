@@ -73,10 +73,10 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
         public void bind(final BloodGroup thisBloodGroup) {
             tv_name.setText(thisBloodGroup.getName());
             ll_background.setBackgroundColor(Color.parseColor(thisBloodGroup.getThemeColor()));
-            tv_total_count.setText(String.valueOf(thisBloodGroup.getApproxTotalCount()));
+            tv_total_count.setText(String.valueOf(thisBloodGroup.getCount()));
 
             String totalCountText;
-            switch (thisBloodGroup.getApproxTotalCount()) {
+            switch (thisBloodGroup.getCount()) {
                 case 0:
                     totalCountText = context.getString(R.string.text_zero_donor_ready);
                     break;
@@ -88,7 +88,6 @@ public class BloodGroupAdapter extends RecyclerView.Adapter<BloodGroupAdapter.Vi
                     break;
             }
             tv_total_count_text.setText(totalCountText);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

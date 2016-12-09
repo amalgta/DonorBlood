@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -69,17 +70,6 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
 
         presenter.requestBloodGroups();
 
-        sp_blood_group.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                view.setTag(sp_blood_group_adapter.getItem(i));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,17 +162,17 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
     public boolean doValidate() {
         try {
             //TODO Edittext have error indication provisions use it here
+            // Title is required
+            /**
+            if (TextUtils.isEmpty(title)) {
+                mTitleField.setError(REQUIRED);
+                return;
+            }
+             **/
             if (sp_blood_group.getSelectedItem() == null)
                 return false;
             if ((bt_dob.getTag()) == null)
                 return false;
-            /** Done this act to improve UX | I hope we find someway to verify whether network operations are done. Wont we? */
-            if ((sp_blood_group.getTag()) == null) {
-                if (sp_blood_group_adapter.getCount() > 0) {
-                    sp_blood_group.setTag(sp_blood_group_adapter.getItem(0));
-                } else
-                    return false;
-            }
             if (et_name.getText() == null && et_name.getText().length() > 0)
                 return false;
             if (et_number.getText() == null && et_name.getText().length() > 0)
@@ -200,8 +190,7 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         Donor donor = new Donor();
         donor.setName(et_name.getText().toString());
         donor.setAddress(et_address.getText().toString());
-        donor.setBloodGroup(sp_blood_group.getTag().toString());
-        donor.setBloodGroupCanonicalName(bloodGroupMap.get(sp_blood_group.getTag().toString()));
+        donor.setBloodGroup(sp_blood_group.getSelectedItem().toString());
         donor.setContact(et_number.getText().toString());
         donor.setDob(Constants.simpleDateFormat.format(((Calendar) bt_dob.getTag()).getTime()));
         if (radio_male.isChecked())

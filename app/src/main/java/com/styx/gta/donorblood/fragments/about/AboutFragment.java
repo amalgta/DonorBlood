@@ -16,7 +16,7 @@ public class AboutFragment extends BaseFragment {
 
     @Override
     protected void initUI() {
-        setRoot(true);
+        setScreenTitle("AboutFragment");
         setScreenTitle("AboutFragment");
         setScreenLayout(R.layout.fragment_about);
     }

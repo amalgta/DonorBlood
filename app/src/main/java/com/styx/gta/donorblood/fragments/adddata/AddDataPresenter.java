@@ -2,12 +2,17 @@ package com.styx.gta.donorblood.fragments.adddata;
 
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.BloodGroup;
@@ -68,5 +73,53 @@ class AddDataPresenter implements AddDataContract.Presenter {
         DatabaseReference newDonor = mMessagesRef.push();
         donor.setObjectID(newDonor.getKey());
         newDonor.setValue(donor);
+        incrementBloodGroupDonorCount(donor.getBloodGroup());
+    }
+
+    private void incrementBloodGroupDonorCount(String groupName) {
+        final String dbFile = "Data/BloodGroup";
+        final DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
+        mMessagesRef.orderByChild("name").equalTo(groupName).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                mMessagesRef.child(dataSnapshot.getKey()).runTransaction(new Transaction.Handler() {
+                    @Override
+                    public Transaction.Result doTransaction(MutableData mutableData) {
+                        BloodGroup bloodGroup = mutableData.getValue(BloodGroup.class);
+                        if (bloodGroup == null) {
+                            return Transaction.success(mutableData);
+                        }
+                        bloodGroup.setCount(bloodGroup.getCount() + 1);
+                        mutableData.setValue(bloodGroup);
+                        return Transaction.success(mutableData);
+                    }
+
+                    @Override
+                    public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                        Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+                    }
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

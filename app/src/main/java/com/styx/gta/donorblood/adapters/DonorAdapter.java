@@ -83,7 +83,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
             tv_sex.setText(thisDonor.getSex());
             iv_user.setImageResource(((thisDonor.getSex().equalsIgnoreCase(Donor.Sex.male)) ? (R.drawable.ic_male) : (R.drawable.ic_female)));
             tv_contact.setText(thisDonor.getContact());
-            tv_blood_group.setText(thisDonor.getBloodGroupCanonicalName());
+            tv_blood_group.setText(thisDonor.getBloodGroup());
             this.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 public class Donor extends BaseModel implements Serializable {
-    private String address, bloodGroupCanonicalName, contact, dob, name, sex, bloodGroup;
+    private String address, contact, dob, name, sex, bloodGroup;
 
     public Donor() {
     }
@@ -28,9 +28,6 @@ public class Donor extends BaseModel implements Serializable {
         return bloodGroup;
     }
 
-    public String getBloodGroupCanonicalName() {
-        return bloodGroupCanonicalName;
-    }
 
     public String getContact() {
         return contact;
@@ -58,10 +55,6 @@ public class Donor extends BaseModel implements Serializable {
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
-    }
-
-    public void setBloodGroupCanonicalName(String bloodGroupCanonicalName) {
-        this.bloodGroupCanonicalName = bloodGroupCanonicalName;
     }
 
     public void setContact(String contact) {

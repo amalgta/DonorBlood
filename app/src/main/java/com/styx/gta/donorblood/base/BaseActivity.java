@@ -1,5 +1,6 @@
 package com.styx.gta.donorblood.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +25,23 @@ import com.styx.gta.donorblood.utilities.Logger;
 
 public class BaseActivity extends AppCompatActivity implements UserActionListener {
     public static final String TAG = "BaseActivity";
+    private ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setMessage("Loading...");
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
 
     protected boolean isFragmentExistsInBackStack(String tag) {
         if (getSupportFragmentManager().findFragmentByTag(tag) != null)
@@ -125,7 +143,7 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                     break;
             }
         } catch (NullPointerException e) {
-            Logger.e(TAG,e.toString());
+            Logger.e(TAG, e.toString());
         }
     }
 }
