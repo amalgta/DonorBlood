@@ -17,6 +17,6 @@ class DonorDetailPresenter implements DonorDetailContract.Presenter {
     public void request() {
         Bundle mBundle = mView.getViewArguments();
         Donor mDonor = (Donor) mBundle.getSerializable(Constants.FragmentParameters.keyObject);
-        mView.bindDonorUI(mDonor);
+        mView.bindDonorUI(mView.getRootView(),mDonor);
     }
 }

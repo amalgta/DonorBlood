@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/iv_user"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_default"
             android:layout_weight="5"
             android:scaleType="fitCenter"

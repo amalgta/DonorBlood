@@ -1,9 +1,12 @@
 package com.styx.gta.donorblood.fragments.adddata;
 
 import android.app.DatePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -15,9 +18,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
@@ -25,9 +30,11 @@ import com.styx.gta.donorblood.base.BaseFragment;
 import com.styx.gta.donorblood.models.BloodGroup;
 import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.ui.widget.FontTextView;
+import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -93,6 +100,34 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         sp_blood_group_adapter.add(name);
     }
 
+    @Override
+    public void bindDonorUI(View rootView,final Donor donor) {
+        ((TextView) rootView.findViewById(R.id.tv_name)).setText(donor.getName());
+        ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.findAge(donor.getDob())));
+        ((TextView) rootView.findViewById(R.id.tv_contact)).setText(donor.getContact());
+        ((TextView) rootView.findViewById(R.id.tv_sex)).setText(donor.getSex());
+        ((ImageView) rootView.findViewById(R.id.iv_user)).setImageResource(((donor.getSex().equalsIgnoreCase(Donor.Sex.male)) ? (R.drawable.ic_male) : (R.drawable.ic_female)));
+        ((TextView) rootView.findViewById(R.id.tv_address)).setText(donor.getAddress());
+        rootView.findViewById(R.id.iv_button_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?&q=" + donor.getAddress());
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    try {
+                        Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        startActivity(unrestrictedIntent);
+                    } catch (ActivityNotFoundException innerEx) {
+                        Toast.makeText(getContext(), "Please install a maps application", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+    }
+
     void showDatePicker(final View view) {
         Calendar calendar = Calendar.getInstance();
         new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
@@ -101,17 +136,21 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
                 Calendar m = Calendar.getInstance();
                 m.set(i, i1, i2);
                 view.setTag(m);
+                ((Button) view).setText(i + "/" + i1 + "/" + i2);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 
-    void showCard(Donor donor) {
+    void showCard(final Donor donor) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(donor.getName());
 
-        final View dialogueView = LayoutInflater.from(getContext()).inflate(R.layout.item_donor_expanded, null);
-        builder.setView(dialogueView);
+        final View rootView = LayoutInflater.from(getContext()).inflate(R.layout.item_donor_expanded, null);
+        builder.setView(rootView);
+
+        this.bindDonorUI(rootView,donor);
+
         builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -153,7 +192,7 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         donor.setBloodGroupCanonicalName(bloodGroupMap.get(sp_blood_group.getSelectedItem().toString()));
         donor.setContact(et_number.getText().toString());
         donor.setDob(bt_dob.getTag().toString());
-        if (radio_female.isSelected())
+        if (radio_male.isChecked())
             donor.setSex(Donor.Sex.male);
         else
             donor.setSex(Donor.Sex.female);

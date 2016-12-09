@@ -17,6 +17,7 @@
 package com.styx.gta.donorblood.fragments.donordetail;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.styx.gta.donorblood.base.BasePresenter;
 import com.styx.gta.donorblood.models.Donor;
@@ -27,9 +28,9 @@ import com.styx.gta.donorblood.models.Donor;
 interface DonorDetailContract {
 
     interface View {
-        void bindDonorUI(final Donor donor);
-
+        void bindDonorUI(android.view.View rootView, final Donor donor);
         Bundle getViewArguments();
+        android.view.View getRootView();
     }
 
     interface Presenter extends BasePresenter {

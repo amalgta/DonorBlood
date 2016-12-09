@@ -39,7 +39,12 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
     }
 
     @Override
-    public void bindDonorUI(final Donor donor) {
+    public View getRootView() {
+        return rootView;
+    }
+
+    @Override
+    public void bindDonorUI(View rootView,final Donor donor) {
         ((TextView) rootView.findViewById(R.id.tv_name)).setText(donor.getName());
         ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.findAge(donor.getDob())));
         ((TextView) rootView.findViewById(R.id.tv_contact)).setText(donor.getContact());
