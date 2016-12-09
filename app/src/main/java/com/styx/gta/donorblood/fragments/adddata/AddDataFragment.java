@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,10 +22,12 @@ import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseFragment;
+import com.styx.gta.donorblood.constants.Constants;
 import com.styx.gta.donorblood.models.Donor;
 import com.styx.gta.donorblood.utilities.Utilities;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -66,6 +69,17 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
 
         presenter.requestBloodGroups();
 
+        sp_blood_group.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setTag(sp_blood_group_adapter.getItem(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +105,7 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
     }
 
     @Override
-    public void bindDonorUI(View rootView,final Donor donor) {
+    public void bindDonorUI(View rootView, final Donor donor) {
         ((TextView) rootView.findViewById(R.id.tv_name)).setText(donor.getName());
         ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.findAge(donor.getDob())));
         ((TextView) rootView.findViewById(R.id.tv_contact)).setText(donor.getContact());
@@ -126,7 +140,7 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
                 Calendar m = Calendar.getInstance();
                 m.set(i, i1, i2);
                 view.setTag(m);
-                ((Button) view).setText(i + "/" + i1 + "/" + i2);
+                ((Button) view).setText(Constants.simpleDateFormat.format(m.getTime()));
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
@@ -139,11 +153,12 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         final View rootView = LayoutInflater.from(getContext()).inflate(R.layout.item_donor_expanded, null);
         builder.setView(rootView);
 
-        this.bindDonorUI(rootView,donor);
+        this.bindDonorUI(rootView, donor);
 
         builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                presenter.saveDonor(donor);
             }
         });
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -161,6 +176,13 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
                 return false;
             if ((bt_dob.getTag()) == null)
                 return false;
+            /** Done this act to improve UX | I hope we find someway to verify whether network operations are done. Wont we? */
+            if ((sp_blood_group.getTag()) == null) {
+                if (sp_blood_group_adapter.getCount() > 0) {
+                    sp_blood_group.setTag(sp_blood_group_adapter.getItem(0));
+                } else
+                    return false;
+            }
             if (et_name.getText() == null && et_name.getText().length() > 0)
                 return false;
             if (et_number.getText() == null && et_name.getText().length() > 0)
@@ -178,10 +200,10 @@ public class AddDataFragment extends BaseFragment implements AddDataContract.Vie
         Donor donor = new Donor();
         donor.setName(et_name.getText().toString());
         donor.setAddress(et_address.getText().toString());
-        donor.setBloodGroup(sp_blood_group.getSelectedItem().toString());
-        donor.setBloodGroupCanonicalName(bloodGroupMap.get(sp_blood_group.getSelectedItem().toString()));
+        donor.setBloodGroup(sp_blood_group.getTag().toString());
+        donor.setBloodGroupCanonicalName(bloodGroupMap.get(sp_blood_group.getTag().toString()));
         donor.setContact(et_number.getText().toString());
-        donor.setDob(bt_dob.getTag().toString());
+        donor.setDob(Constants.simpleDateFormat.format(((Calendar) bt_dob.getTag()).getTime()));
         if (radio_male.isChecked())
             donor.setSex(Donor.Sex.male);
         else

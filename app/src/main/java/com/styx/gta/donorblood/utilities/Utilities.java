@@ -54,6 +54,7 @@ public class Utilities {
         Calendar mToday = Calendar.getInstance();
         return (mToday.get(Calendar.YEAR) - mDob.get(Calendar.YEAR));
     }
+
     public static String getMD5(String payload)  {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

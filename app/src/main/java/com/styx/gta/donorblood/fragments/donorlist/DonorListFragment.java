@@ -32,7 +32,6 @@ public class DonorListFragment extends BaseFragment implements DonorListContract
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
         presenter.request();
-
     }
     @Override
     public DonorAdapter getAdapter() {

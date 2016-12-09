@@ -30,7 +30,7 @@ class DonorListPresenter implements DonorListContract.Presenter {
     public void request() {
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         BloodGroup thisGroup = (BloodGroup) mView.getViewArguments().getSerializable(Constants.FragmentParameters.keyObject);
-        final Query query = mMessagesRef.orderByChild(fieldParameter).equalTo(thisGroup.getObjectID());
+        final Query query = mMessagesRef.orderByChild(fieldParameter).equalTo(thisGroup.getName());
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

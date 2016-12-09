@@ -18,7 +18,6 @@ import com.styx.gta.donorblood.utilities.Utilities;
 class AddDataPresenter implements AddDataContract.Presenter {
     private AddDataContract.View view;
     private final String TAG = "DonorListPresenter";
-    private final String dbFile = "Data/BloodGroup";
 
     AddDataPresenter(AddDataContract.View view) {
         this.view = view;
@@ -30,6 +29,7 @@ class AddDataPresenter implements AddDataContract.Presenter {
 
     @Override
     public void requestBloodGroups() {
+        String dbFile = "Data/BloodGroup";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         final Query query = mMessagesRef;
         query.addChildEventListener(new ChildEventListener() {
@@ -59,5 +59,14 @@ class AddDataPresenter implements AddDataContract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void saveDonor(Donor donor) {
+        String dbFile = "Data/Donor";
+        DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
+        DatabaseReference newDonor = mMessagesRef.push();
+        donor.setObjectID(newDonor.getKey());
+        newDonor.setValue(donor);
     }
 }

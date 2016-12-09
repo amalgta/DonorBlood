@@ -29,7 +29,9 @@ interface DonorDetailContract {
 
     interface View {
         void bindDonorUI(android.view.View rootView, final Donor donor);
+
         Bundle getViewArguments();
+
         android.view.View getRootView();
     }
 
