@@ -12,6 +12,7 @@ interface AddDataContract {
     interface View {
         void addGroupItem(String value, String name);
         void bindDonorUI(android.view.View view, Donor donor);
+        void onAddUserSuccess(boolean result);
     }
 
     interface Presenter extends BasePresenter {

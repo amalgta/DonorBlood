@@ -81,7 +81,7 @@
                             android:id="@+id/et_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Contact Number"
+                            android:hint="Number"
                             android:inputType="phone" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -99,7 +99,6 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:checked="true"
                             android:text="Male" />
 
                         <RadioButton
@@ -123,15 +122,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
-                    <Button
-                        android:id="@+id/bt_dob"
+                    <EditText
+                        android:id="@+id/et_dob"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/margin_mini"
                         android:layout_weight="1"
-                        android:background="@color/white"
-                        android:text="Date of Birth" />
-
+                        android:inputType="date"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:textIsSelectable="false"
+                        android:hint="Dob" />
                 </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -142,7 +143,7 @@
                         android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
+                        android:inputType="textPostalAddress|textCapWords"
                         android:maxLines="4" />
                 </android.support.design.widget.TextInputLayout>
 

@@ -67,35 +67,21 @@ class AddDataPresenter implements AddDataContract.Presenter {
     }
 
     @Override
-    public void saveDonor(Donor donor) {
+    public void saveDonor(final Donor donor) {
         String dbFile = "Data/Donor";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         DatabaseReference newDonor = mMessagesRef.push();
         donor.setObjectID(newDonor.getKey());
-        addNewDonor(newDonor, donor);
-        incrementBloodGroupDonorCount(donor.getBloodGroup());
-    }
-
-    void addNewDonor(DatabaseReference ref, Donor donor) {
-//TODO
-/**
-        ref.child(donor.getObjectID()).runTransaction(new Transaction.Handler() {
+        mMessagesRef.child(donor.getObjectID()).setValue(donor, new DatabaseReference.CompletionListener() {
             @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Donor donor = mutableData.getValue(Donor.class);
-                if (bloodGroup == null) {
-                    return Transaction.success(mutableData);
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError == null) {
+                    incrementBloodGroupDonorCount(donor.getBloodGroup());
+                } else {
+                    view.onAddUserSuccess(false);
                 }
-                mutableData.setValue(donor);
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-                Log.d(TAG, "postTransaction:onComplete:" + databaseError);
             }
         });
-        **/
     }
 
     private void incrementBloodGroupDonorCount(String groupName) {
@@ -118,7 +104,7 @@ class AddDataPresenter implements AddDataContract.Presenter {
 
                     @Override
                     public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-                        Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+                        view.onAddUserSuccess(true);
                     }
                 });
             }
