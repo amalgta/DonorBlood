@@ -93,7 +93,6 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                getActivity().onBackPressed();
             }
         });
         builder.setCancelable(false);
