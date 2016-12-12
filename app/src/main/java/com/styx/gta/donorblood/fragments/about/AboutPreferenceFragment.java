@@ -20,13 +20,14 @@ import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.UserAction;
 
+import static com.styx.gta.donorblood.constants.Constants.MAX_CLICKS_TO_UNLOCK_REG;
+
 
 /**
  * Created by amal.george on 06-12-2016.
  */
 
 public class AboutPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, AboutPreferenceContract.View {
-    private static final int MAX_CLICKS_TO_UNLOCK_REG = 1;
 
     private static final String TAG = "AboutPreferenceFragment";
 

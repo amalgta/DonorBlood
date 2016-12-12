@@ -10,12 +10,12 @@ import java.util.HashMap;
 
 public interface Constants {
     boolean enableLog = true;
-    int approximationMargin = 1;
     String datePattern = "yyyy-MM-dd";
+    int MAX_CLICKS_TO_UNLOCK_REG = 8;
+
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
 
     interface FragmentParameters {
-        String objectID = "objectID";
         String keyObject = "keyObject";
     }
 
