@@ -102,7 +102,6 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
     @Override
     public void validationResult(boolean authenticated) {
         isLoading = false;
-        Toast.makeText(getActivity(), ((authenticated) ? "Tr8e" : "False"), Toast.LENGTH_SHORT).show();
         if (authenticated)
             (((BaseActivity) getActivity())).doUserAction(UserAction.ADD_DATA_FRAGMENT, new Bundle());
         //Toast.makeText(getActivity(), "Taking you to admin panel", Toast.LENGTH_SHORT).show();
