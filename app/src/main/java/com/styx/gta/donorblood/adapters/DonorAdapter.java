@@ -57,13 +57,14 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_age, tv_sex, tv_contact, tv_blood_group;
+        public TextView tv_name, tv_age, tv_sex, tv_address, tv_contact, tv_blood_group;
         public ImageView iv_call_icon, iv_user;
 
         public ViewHolder(View view) {
             super(view);
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_age = (TextView) view.findViewById(R.id.tv_age);
+            tv_address = (TextView) view.findViewById(R.id.tv_address);
             tv_sex = (TextView) view.findViewById(R.id.tv_sex);
             tv_contact = (TextView) view.findViewById(R.id.tv_contact);
             tv_blood_group = (TextView) view.findViewById(R.id.tv_blood_group);
@@ -81,6 +82,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
                 }
             });
             tv_sex.setText(thisDonor.getSex());
+            tv_address.setText(thisDonor.getAddress());
             iv_user.setImageResource(((thisDonor.getSex().equalsIgnoreCase(Donor.Sex.male)) ? (R.drawable.ic_male) : (R.drawable.ic_female)));
             tv_contact.setText(thisDonor.getContact());
             tv_blood_group.setText(thisDonor.getBloodGroup());

@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.styx.gta.donorblood.R;
+import com.styx.gta.donorblood.activities.HomeActivity;
 import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.UserAction;
 
@@ -88,6 +89,7 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 isLoading = true;
+                ((HomeActivity)getActivity()).showProgressDialog();
                 presenter.doValidateUser(((EditText) (dialogueView.findViewById(R.id.et_text))).getText().toString());
             }
         });
@@ -102,6 +104,7 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
 
     @Override
     public void validationResult(boolean authenticated) {
+        ((HomeActivity)getActivity()).hideProgressDialog();
         isLoading = false;
         if (authenticated)
             (((BaseActivity) getActivity())).doUserAction(UserAction.ADD_DATA_FRAGMENT, new Bundle());

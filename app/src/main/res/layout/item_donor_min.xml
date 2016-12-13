@@ -78,6 +78,13 @@
                         android:padding="@dimen/padding_mini"
                         app:font="@string/font_gothic_bold"
                         tools:text="Sex" />
+                    <com.styx.gta.donorblood.ui.widget.FontTextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/padding_mini"
+                        app:font="@string/font_gothic_bold"
+                        tools:text="Address" />
 
                 </LinearLayout>
 
@@ -108,7 +115,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:padding="@dimen/padding_mini"
-
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_call_black_24px" />
                 </LinearLayout>
