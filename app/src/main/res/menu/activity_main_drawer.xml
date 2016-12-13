@@ -6,7 +6,6 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-
             android:title="Home" />
         <item
             android:id="@+id/nav_search"
@@ -14,12 +13,12 @@
             android:title="Search" />
     </group>
 
-    <item android:title="Volunteer">
+    <item android:title="DonorBlood">
         <menu>
             <item
-                android:id="@+id/nav_contribute"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Donate Blood" />
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="About" />
         </menu>
     </item>
 

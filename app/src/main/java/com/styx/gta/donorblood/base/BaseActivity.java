@@ -19,6 +19,7 @@ import com.styx.gta.donorblood.fragments.adddata.AddDataFragment;
 import com.styx.gta.donorblood.fragments.donordetail.DonorDetailFragment;
 import com.styx.gta.donorblood.fragments.donorlist.DonorListFragment;
 import com.styx.gta.donorblood.fragments.home.HomeFragment;
+import com.styx.gta.donorblood.fragments.search.SearchFragment;
 import com.styx.gta.donorblood.interfaces.UserActionListener;
 import com.styx.gta.donorblood.utilities.Logger;
 
@@ -120,6 +121,17 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
                         mFragment = new DonorDetailFragment();
                         mFragment.setArguments(mBundle);
                         addFragment(mLayout, mFragment, DonorDetailFragment.TAG);
+                    }
+                    break;
+                case SEARCH_FRAGMENT:
+                    if (isFragmentExistsInBackStack(SearchFragment.TAG)) {
+                        if (getTopFragment() instanceof SearchFragment)
+                            return;
+                        popBackStack(SearchFragment.TAG, 0);
+                    } else {
+                        mFragment = new SearchFragment();
+                        mFragment.setArguments(mBundle);
+                        addFragment(mLayout, mFragment, SearchFragment.TAG);
                     }
                     break;
                 case ABOUT_FRAGMENT:

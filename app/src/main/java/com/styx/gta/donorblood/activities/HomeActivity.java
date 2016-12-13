@@ -43,13 +43,18 @@ public class HomeActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            doUserAction(UserAction.HOME_SCREEN, new Bundle());
-        }else if(id==R.id.nav_search){
-            doUserAction(UserAction.ABOUT_FRAGMENT,new Bundle( ));
+        switch (item.getItemId()) {
+            case R.id.nav_camera:
+                doUserAction(UserAction.HOME_SCREEN, new Bundle());
+                break;
+            case R.id.nav_search:
+                doUserAction(UserAction.SEARCH_FRAGMENT, new Bundle());
+                break;
+            case R.id.nav_about:
+                doUserAction(UserAction.ABOUT_FRAGMENT, new Bundle());
+                break;
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
