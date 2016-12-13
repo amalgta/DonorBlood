@@ -32,6 +32,11 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.ViewHolder> 
         this.context = context;
     }
 
+    public void clear() {
+        list.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public void addItem(Donor item) {
         list.add(item);

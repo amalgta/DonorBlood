@@ -55,7 +55,12 @@ public class Utilities {
         return (mToday.get(Calendar.YEAR) - mDob.get(Calendar.YEAR));
     }
 
-    public static String getMD5(String payload)  {
+    public static int findBirthYear(int age) {
+        Calendar mToday = Calendar.getInstance();
+        return (mToday.get(Calendar.YEAR) - age);
+    }
+
+    public static String getMD5(String payload) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(payload.getBytes());
@@ -74,7 +79,7 @@ public class Utilities {
             }
             return hexString.toString();
 
-        }catch (NoSuchAlgorithmException e){
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;

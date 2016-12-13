@@ -27,13 +27,15 @@ import com.styx.gta.donorblood.models.Donor;
 interface SearchContract {
 
     interface View {
-        void bindDonorUI(android.view.View rootView, final Donor donor);
-
-        Bundle getViewArguments();
-
-        android.view.View getRootView();
+        void addGroupItem(String value, String name);
+        void addSearchResult(Donor donor);
+        void onDataReceive();
     }
 
     interface Presenter extends BasePresenter {
+        void requestMatches(String... parameters);
+
+        void requestBloodGroups();
+
     }
 }
