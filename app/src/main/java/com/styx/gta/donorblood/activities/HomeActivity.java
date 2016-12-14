@@ -8,20 +8,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.UserAction;
 
 public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     Toolbar toolbar;
+    ImageView iv_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        iv_search = (ImageView) findViewById(R.id.iv_search);
+        iv_search.setOnClickListener(this);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -33,6 +38,8 @@ public class HomeActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         doUserAction(UserAction.HOME_SCREEN, new Bundle());
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -54,5 +61,14 @@ public class HomeActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_search:
+                doUserAction(UserAction.SEARCH_FRAGMENT, new Bundle());
+                break;
+        }
     }
 }

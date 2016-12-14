@@ -19,9 +19,11 @@ public class BaseFragment extends Fragment {
     int screenLayout;
     protected View rootView;
     boolean isRoot;
+    boolean isFirstTime;
 
     public BaseFragment() {
         isRoot = false;
+        isFirstTime = true;
         initUI();
     }
 
@@ -40,13 +42,11 @@ public class BaseFragment extends Fragment {
         }
     }
 
-
     protected void initUI() {
     }
 
     protected void setUI(Bundle savedInstanceState) {
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

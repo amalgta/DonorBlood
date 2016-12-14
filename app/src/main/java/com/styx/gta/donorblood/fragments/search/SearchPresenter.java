@@ -32,16 +32,16 @@ class SearchPresenter implements SearchContract.Presenter {
 
     public void request() {
     }
-
-    //presenter.requestMatches(et_name, et_address, sp_blood_group, et_number, Donor.Sex, et_min_age, et_max_age);
+    //                         0            1            2             3          4
+    //presenter.requestMatches(et_address, sp_blood_group, Donor.Sex, et_min_age, et_max_age);
     @Override
     public void requestMatches(final String... parameters) {
         /** Try to optimise as possible. This is the most resource using task in the app**/
         String dbFile = "Data/Donor";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         final Query query;
-        if (!parameters[2].contains("ALL"))
-            query = mMessagesRef.orderByChild("bloodGroup").equalTo(parameters[2]);
+        if (!parameters[1].contains("ALL"))
+            query = mMessagesRef.orderByChild("bloodGroup").equalTo(parameters[1]);
         else
             query = mMessagesRef;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -50,13 +50,9 @@ class SearchPresenter implements SearchContract.Presenter {
                 view.onDataReceive();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Donor theDonor = child.getValue(Donor.class);
-                    if ((!TextUtils.isEmpty(parameters[0])) && (!theDonor.getName().contains(parameters[0])))
+                    if ((!TextUtils.isEmpty(parameters[0])) && (!theDonor.getAddress().contains(parameters[0])))
                         continue;
-                    if ((!TextUtils.isEmpty(parameters[1])) && (!theDonor.getAddress().contains(parameters[1])))
-                        continue;
-                    if ((!TextUtils.isEmpty(parameters[3])) && (!theDonor.getContact().contains(parameters[3])))
-                        continue;
-                    if (!(parameters[4].contains("both")) && ((!theDonor.getSex().contains(parameters[4]))))
+                    if (!(parameters[2].contains("both")) && ((!theDonor.getSex().contains(parameters[2]))))
                         continue;
                     Date mDob;
                     try {
@@ -65,15 +61,14 @@ class SearchPresenter implements SearchContract.Presenter {
                         Logger.e("SearchPresenter", e.toString());
                         continue;
                     }
-
                     Calendar min = Calendar.getInstance(), max = Calendar.getInstance();
-                    if (!TextUtils.isEmpty(parameters[5])) {
-                        min.set(Utilities.findBirthYear(Integer.parseInt(parameters[5])), 1, 1);
+                    if (!TextUtils.isEmpty(parameters[3])) {
+                        min.set(Utilities.findBirthYear(Integer.parseInt(parameters[3])), 1, 1);
                         if (mDob.after(min.getTime()))
                             continue;
                     }
-                    if (!TextUtils.isEmpty(parameters[6])) {
-                        max.set(Utilities.findBirthYear(Integer.parseInt(parameters[6])), 1, 1);
+                    if (!TextUtils.isEmpty(parameters[4])) {
+                        max.set(Utilities.findBirthYear(Integer.parseInt(parameters[4])), 1, 1);
                         if (mDob.before(max.getTime()))
                             continue;
                     }

@@ -33,7 +33,7 @@ import java.util.Locale;
 public class SearchFragment extends BaseFragment implements SearchContract.View {
     public static final String TAG = "SearchFragment";
     private SearchContract.Presenter presenter;
-    private EditText et_name, et_number, et_min_age, et_max_age, et_address;
+    private EditText et_min_age, et_max_age, et_address;
     private Spinner sp_blood_group;
     private CheckBox cb_male, cb_female;
     private Button bt_search;
@@ -52,8 +52,6 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
         presenter = new SearchPresenter(this);
         bloodGroupMap = new HashMap<>();
         sp_blood_group_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item);
-        et_name = (EditText) rootView.findViewById(R.id.et_name);
-        et_number = (EditText) rootView.findViewById(R.id.et_number);
         et_min_age = (EditText) rootView.findViewById(R.id.et_min_age);
         et_max_age = (EditText) rootView.findViewById(R.id.et_max_age);
         et_address = (EditText) rootView.findViewById(R.id.et_address);
@@ -67,7 +65,7 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
             public void onClick(View view) {
                 adapter.clear();
                 getBase().showProgressDialog();
-                presenter.requestMatches(et_name.getText().toString(), et_address.getText().toString(), sp_blood_group.getSelectedItem().toString(), et_number.getText().toString(), (cb_male.isChecked() ? (cb_female.isChecked() ? "both" : Donor.Sex.male) : (cb_female.isChecked() ? Donor.Sex.female : "both")), et_min_age.getText().toString(), et_max_age.getText().toString());
+                presenter.requestMatches(et_address.getText().toString(), sp_blood_group.getSelectedItem().toString(), (cb_male.isChecked() ? (cb_female.isChecked() ? "both" : Donor.Sex.male) : (cb_female.isChecked() ? Donor.Sex.female : "both")), et_min_age.getText().toString(), et_max_age.getText().toString());
             }
         });
         presenter.requestBloodGroups();
