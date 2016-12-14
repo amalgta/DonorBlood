@@ -52,20 +52,34 @@
                     android:text="Add New Donor"
                     app:font="@string/font_gothic_bold" />
 
-
-                <android.support.design.widget.TextInputLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7">
+                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/et_name"
+                    <ImageView
+                        android:id="@+id/iv_add_from_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Donor Name"
-                        android:inputType="textPersonName|textCapWords" />
+                        android:layout_toLeftOf="@+id/iv_add_from_contact">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Donor Name"
+                            android:inputType="textPersonName|textCapWords" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -127,12 +141,12 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:inputType="date"
-                        android:focusableInTouchMode="false"
-                        android:focusable="false"
                         android:clickable="false"
-                        android:textIsSelectable="false"
-                        android:hint="Dob" />
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="Dob"
+                        android:inputType="date"
+                        android:textIsSelectable="false" />
                 </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
