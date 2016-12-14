@@ -1,0 +1,131 @@
+{
+  "Config" : {
+    "ADMIN_SECRET_HASH" : "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "Data" : {
+    "BloodGroup" : {
+      "-KYw54itCB6Or9OlnwRx" : {
+        "count" : 1,
+        "name" : "O+",
+        "objectID" : "-KYw54itCB6Or9OlnwRx",
+        "themeColor" : "#DAF7A6"
+      },
+      "-KYw54jHQq4j2ziSHnUO" : {
+        "count" : 1,
+        "name" : "O-",
+        "objectID" : "-KYw54jHQq4j2ziSHnUO",
+        "themeColor" : "#FFC300"
+      },
+      "-KYw54jIpkghI3_uJsbk" : {
+        "count" : 1,
+        "name" : "A+",
+        "objectID" : "-KYw54jIpkghI3_uJsbk",
+        "themeColor" : "#FF7558"
+      },
+      "-KYw54jJLiwQRtLEwz_m" : {
+        "count" : 1,
+        "name" : "A-",
+        "objectID" : "-KYw54jJLiwQRtLEwz_m",
+        "themeColor" : "#58D68D"
+      },
+      "-KYw54jJLiwQRtLEwz_n" : {
+        "count" : 1,
+        "name" : "B+",
+        "objectID" : "-KYw54jJLiwQRtLEwz_n",
+        "themeColor" : "#E550AC"
+      },
+      "-KYw54jKbBh4FnZwO5iX" : {
+        "count" : 1,
+        "name" : "B-",
+        "objectID" : "-KYw54jKbBh4FnZwO5iX",
+        "themeColor" : "#FE5360"
+      },
+      "-KYw54jKbBh4FnZwO5iY" : {
+        "count" : 1,
+        "name" : "AB+",
+        "objectID" : "-KYw54jKbBh4FnZwO5iY",
+        "themeColor" : "#8FEEE8"
+      },
+      "-KYw54jLTKo8sVdocMx7" : {
+        "count" : 1,
+        "name" : "AB-",
+        "objectID" : "-KYw54jLTKo8sVdocMx7",
+        "themeColor" : "#FFFC37"
+      }
+    },
+    "Donor" : {
+      "-KYw5PpvS4NmcFpRSbye" : {
+        "address" : "Nirmalagiri, Koothuparamba",
+        "bloodGroup" : "O+",
+        "contact" : "9497025351",
+        "dob" : "1994-06-19",
+        "name" : "Amal Thomas",
+        "objectID" : "-KYw5PpvS4NmcFpRSbye",
+        "sex" : "Male"
+      },
+      "-KYw5i3FDtoin63WYBbs" : {
+        "address" : "Kothamangalam",
+        "bloodGroup" : "O-",
+        "contact" : "9995655177",
+        "dob" : "1986-10-07",
+        "name" : "Risal KN",
+        "objectID" : "-KYw5i3FDtoin63WYBbs",
+        "sex" : "Male"
+      },
+      "-KYw5pPyFIo5So5kUON0" : {
+        "address" : "Bombay",
+        "bloodGroup" : "A+",
+        "contact" : "9048405099",
+        "dob" : "1995-02-17",
+        "name" : "Deepika Padukone",
+        "objectID" : "-KYw5pPyFIo5So5kUON0",
+        "sex" : "Female"
+      },
+      "-KYw5xVEk7FngGPuYzXf" : {
+        "address" : "Thalassery",
+        "bloodGroup" : "A-",
+        "contact" : "9048405099",
+        "dob" : "1994-04-04",
+        "name" : "Marylin Munroe",
+        "objectID" : "-KYw5xVEk7FngGPuYzXf",
+        "sex" : "Female"
+      },
+      "-KYw643NLCdtyElSDIKo" : {
+        "address" : "Kozhikode",
+        "bloodGroup" : "B+",
+        "contact" : "9995655133",
+        "dob" : "1986-12-14",
+        "name" : "Dino Baby",
+        "objectID" : "-KYw643NLCdtyElSDIKo",
+        "sex" : "Male"
+      },
+      "-KYw6MUdR-ZXmfjHh2Mo" : {
+        "address" : "Calicut",
+        "bloodGroup" : "B-",
+        "contact" : "9497025352",
+        "dob" : "1999-12-14",
+        "name" : "Christina Francis",
+        "objectID" : "-KYw6MUdR-ZXmfjHh2Mo",
+        "sex" : "Female"
+      },
+      "-KYw6TKVVgy8IFamN1i0" : {
+        "address" : "Payyanoor",
+        "bloodGroup" : "AB+",
+        "contact" : "9048050574",
+        "dob" : "1989-12-14",
+        "name" : "Ashwin Raj",
+        "objectID" : "-KYw6TKVVgy8IFamN1i0",
+        "sex" : "Male"
+      },
+      "-KYw6ZieG_7Z-kcdjypw" : {
+        "address" : "Payyanoor",
+        "bloodGroup" : "AB-",
+        "contact" : "9048405071",
+        "dob" : "1993-02-18",
+        "name" : "Ramjith Kadannapallil",
+        "objectID" : "-KYw6ZieG_7Z-kcdjypw",
+        "sex" : "Male"
+      }
+    }
+  }
+}
