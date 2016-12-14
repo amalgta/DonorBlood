@@ -9,6 +9,10 @@ Introduction
   - Single Activity, Fragment Based Navigation Paradigm (http://androidandotherthings.com/designing-your-views-activities-or-fragments).
   - Basic **Model-View-Presenter** Architecture implementation
 
+Download from Play Store
+-----------
+[DonorBlood](https://play.google.com/store/apps/details?id=com.styx.gta.donorblood) from Google Play Store
+
 Screenshot
 -----------
 <img src="screenshot/Screenshot_20161214-151533.png" height="534" width="300"/>
