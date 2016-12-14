@@ -40,4 +40,9 @@ public class BloodGroup extends BaseModel implements Serializable {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public void setThemeColor(String themeColor) {
+        this.themeColor = themeColor;
+    }
+
 }

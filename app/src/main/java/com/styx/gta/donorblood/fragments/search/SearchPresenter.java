@@ -40,7 +40,7 @@ class SearchPresenter implements SearchContract.Presenter {
         String dbFile = "Data/Donor";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
         final Query query;
-        if (parameters[2] != "ALL")
+        if (!parameters[2].contains("ALL"))
             query = mMessagesRef.orderByChild("bloodGroup").equalTo(parameters[2]);
         else
             query = mMessagesRef;
@@ -51,31 +51,31 @@ class SearchPresenter implements SearchContract.Presenter {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Donor theDonor = child.getValue(Donor.class);
                     if ((!TextUtils.isEmpty(parameters[0])) && (!theDonor.getName().contains(parameters[0])))
-                        return;
+                        continue;
                     if ((!TextUtils.isEmpty(parameters[1])) && (!theDonor.getAddress().contains(parameters[1])))
-                        return;
+                        continue;
                     if ((!TextUtils.isEmpty(parameters[3])) && (!theDonor.getContact().contains(parameters[3])))
-                        return;
+                        continue;
                     if (!(parameters[4].contains("both")) && ((!theDonor.getSex().contains(parameters[4]))))
-                        return;
+                        continue;
                     Date mDob;
                     try {
                         mDob = Constants.simpleDateFormat.parse(theDonor.getDob());
                     } catch (ParseException e) {
                         Logger.e("SearchPresenter", e.toString());
-                        return;
+                        continue;
                     }
 
                     Calendar min = Calendar.getInstance(), max = Calendar.getInstance();
                     if (!TextUtils.isEmpty(parameters[5])) {
                         min.set(Utilities.findBirthYear(Integer.parseInt(parameters[5])), 1, 1);
                         if (mDob.after(min.getTime()))
-                            return;
+                            continue;
                     }
                     if (!TextUtils.isEmpty(parameters[6])) {
                         max.set(Utilities.findBirthYear(Integer.parseInt(parameters[6])), 1, 1);
                         if (mDob.before(max.getTime()))
-                            return;
+                            continue;
                     }
                     view.addSearchResult(theDonor);
                 }

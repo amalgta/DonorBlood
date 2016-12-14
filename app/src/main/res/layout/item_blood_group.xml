@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_mini">
 
         <LinearLayout
