@@ -78,7 +78,7 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
         } else if ((preference == findPreference("legal")) || (preference == findPreference("open_source_licenses")) || (preference == findPreference("terms_of_service")) || (preference == findPreference("privacy_policy"))) {
             Toast.makeText(getActivity().getApplicationContext(), preference.getTitle().toString() + " Being written.", Toast.LENGTH_LONG).show();
         } else if (preference == findPreference("facebook")) {
-            Intent facebookIntent = Utilities.getFacebookIntent(getActivity(), getString(R.string.social_facebook));
+            Intent facebookIntent = Utilities.getFacebookIntent(getString(R.string.social_facebook));
             startActivity(facebookIntent);
         } else if (preference == findPreference("github")) {
             Intent facebookIntent = Utilities.getGenericIntent(getString(R.string.social_github));
@@ -88,6 +88,9 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
             startActivity(facebookIntent);
         } else if (preference == findPreference("twitter")) {
             Intent facebookIntent = Utilities.getGenericIntent(getString(R.string.social_twitter));
+            startActivity(facebookIntent);
+        } else if (preference == findPreference("rate_the_app")) {
+            Intent facebookIntent = Utilities.getMarketIntent(getActivity());
             startActivity(facebookIntent);
         }
         return true;

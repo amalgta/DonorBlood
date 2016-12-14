@@ -1,11 +1,13 @@
 package com.styx.gta.donorblood.utilities;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -85,10 +87,14 @@ public class Utilities {
         return null;
     }
 
-    public static Intent getFacebookIntent(Context context, String profile_id) {
+
+    public static Intent getGenericIntent(String url) {
+        return new Intent(Intent.ACTION_VIEW,
+                Uri.parse(url));
+    }
+
+    public static Intent getFacebookIntent(String profile_id) {
         try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.katana", 0);
             return new Intent(Intent.ACTION_VIEW,
                     Uri.parse("fb://profile/" + profile_id));
         } catch (Exception e) {
@@ -96,8 +102,11 @@ public class Utilities {
         }
     }
 
-    public static Intent getGenericIntent(String url) {
-        return new Intent(Intent.ACTION_VIEW,
-                Uri.parse(url));
+    public static Intent getMarketIntent(Context context) {
+        try {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName()));
+        } catch (ActivityNotFoundException e) {
+            return getGenericIntent("http://play.google.com/store/apps/details?id=" + context.getPackageName());
+        }
     }
 }
