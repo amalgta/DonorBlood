@@ -100,6 +100,7 @@
                         android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Place"
                         android:inputType="textPostalAddress|textCapWords"
                         android:maxLines="4" />
                 </android.support.design.widget.TextInputLayout>

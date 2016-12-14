@@ -32,6 +32,7 @@ class SearchPresenter implements SearchContract.Presenter {
 
     public void request() {
     }
+
     //                         0            1            2             3          4
     //presenter.requestMatches(et_address, sp_blood_group, Donor.Sex, et_min_age, et_max_age);
     @Override
@@ -87,8 +88,7 @@ class SearchPresenter implements SearchContract.Presenter {
     public void requestBloodGroups() {
         String dbFile = "Data/BloodGroup";
         DatabaseReference mMessagesRef = Utilities.getDB(dbFile);
-        final Query query = mMessagesRef;
-        query.addChildEventListener(new ChildEventListener() {
+        mMessagesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 BloodGroup bloodGroup = dataSnapshot.getValue(BloodGroup.class);
