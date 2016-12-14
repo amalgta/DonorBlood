@@ -2,6 +2,7 @@ package com.styx.gta.donorblood.fragments.about;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.styx.gta.donorblood.R;
 import com.styx.gta.donorblood.activities.HomeActivity;
 import com.styx.gta.donorblood.base.BaseActivity;
 import com.styx.gta.donorblood.constants.UserAction;
+import com.styx.gta.donorblood.utilities.Utilities;
 
 import static com.styx.gta.donorblood.constants.Constants.MAX_CLICKS_TO_UNLOCK_REG;
 
@@ -75,6 +77,18 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
             }
         } else if ((preference == findPreference("legal")) || (preference == findPreference("open_source_licenses")) || (preference == findPreference("terms_of_service")) || (preference == findPreference("privacy_policy"))) {
             Toast.makeText(getActivity().getApplicationContext(), preference.getTitle().toString() + " Being written.", Toast.LENGTH_LONG).show();
+        } else if (preference == findPreference("facebook")) {
+            Intent facebookIntent = Utilities.getFacebookIntent(getActivity(), getString(R.string.social_facebook));
+            startActivity(facebookIntent);
+        } else if (preference == findPreference("github")) {
+            Intent facebookIntent = Utilities.getGenericIntent(getString(R.string.social_github));
+            startActivity(facebookIntent);
+        } else if (preference == findPreference("youtube")) {
+            Intent facebookIntent = Utilities.getGenericIntent(getString(R.string.social_youtube));
+            startActivity(facebookIntent);
+        } else if (preference == findPreference("twitter")) {
+            Intent facebookIntent = Utilities.getGenericIntent(getString(R.string.social_twitter));
+            startActivity(facebookIntent);
         }
         return true;
     }
@@ -89,7 +103,7 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 isLoading = true;
-                ((HomeActivity)getActivity()).showProgressDialog();
+                ((HomeActivity) getActivity()).showProgressDialog();
                 presenter.doValidateUser(((EditText) (dialogueView.findViewById(R.id.et_text))).getText().toString());
             }
         });
@@ -104,11 +118,10 @@ public class AboutPreferenceFragment extends PreferenceFragment implements Prefe
 
     @Override
     public void validationResult(boolean authenticated) {
-        ((HomeActivity)getActivity()).hideProgressDialog();
+        ((HomeActivity) getActivity()).hideProgressDialog();
         isLoading = false;
         if (authenticated)
             (((BaseActivity) getActivity())).doUserAction(UserAction.ADD_DATA_FRAGMENT, new Bundle());
-        //Toast.makeText(getActivity(), "Taking you to admin panel", Toast.LENGTH_SHORT).show();
 
     }
 }

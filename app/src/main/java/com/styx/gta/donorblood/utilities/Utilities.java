@@ -84,7 +84,20 @@ public class Utilities {
         }
         return null;
     }
-    public static boolean isAdmin(){
-        return true;
+
+    public static Intent getFacebookIntent(Context context, String profile_id) {
+        try {
+            context.getPackageManager()
+                    .getPackageInfo("com.facebook.katana", 0);
+            return new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("fb://profile/" + profile_id));
+        } catch (Exception e) {
+            return getGenericIntent("https://www.facebook.com/" + profile_id);
+        }
+    }
+
+    public static Intent getGenericIntent(String url) {
+        return new Intent(Intent.ACTION_VIEW,
+                Uri.parse(url));
     }
 }

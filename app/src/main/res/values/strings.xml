@@ -23,15 +23,22 @@
     <string name="debug_null">Null Pointer Exception</string>
     <string name="debug_parse">Parse Exception</string>
 
+    <!--Social Data-->
+    <string name="social_facebook">https://www.facebook.com/amalgta</string>
+    <string name="social_youtube">http://youtube.com/amalgta</string>
+    <string name="social_github">http://github.com/amalgta</string>
+    <string name="social_twitter">http://twitter.com/amalgta</string>
+
 
     <!--About Screen-->
     <string name="copyright">Copyright</string>
     <string name="copyright_summary" translatable="false">2016, Amal Thomas</string>
     <string name="beta_program_summary">Become a beta tester</string>
     <string name="open_source_licenses">Open source licenses</string>
-    <string name="follow_us_on_twitter">Follow us on Twitter</string>
-    <string name="follow_us_on_google_plus">Follow us on G+</string>
-    <string name="follow_us_on_facebook">Follow us on Facebook</string>
+    <string name="follow_me_on_twitter">Follow me on Twitter</string>
+    <string name="follow_me_on_youtube">Follow my channel on YouTube</string>
+    <string name="follow_me_on_github">Follow my channel on GitHub</string>
+    <string name="follow_me_on_facebook">Follow me on Facebook</string>
     <string name="settings">Settings</string>
     <string name="five_stars">5 stars</string>
     <string name="about">About</string>
@@ -40,7 +47,8 @@
     <string name="terms_of_service">Terms of service</string>
     <string name="facebook">Facebook</string>
     <string name="official_website">Official website</string>
-    <string name="google_plus">Google+</string>
+    <string name="youtube">YouTube</string>
+    <string name="github">GitHub</string>
     <string name="feedback">Feedback</string>
     <string name="social">Social</string>
     <string name="help">Help</string>
