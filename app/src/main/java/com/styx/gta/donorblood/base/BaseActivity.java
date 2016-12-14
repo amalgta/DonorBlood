@@ -47,6 +47,7 @@ public class BaseActivity extends AppCompatActivity implements UserActionListene
         }
     }
 
+
     protected boolean isFragmentExistsInBackStack(String tag) {
         if (getSupportFragmentManager().findFragmentByTag(tag) != null)
             return true;

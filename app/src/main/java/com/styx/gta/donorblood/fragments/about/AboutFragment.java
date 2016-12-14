@@ -1,5 +1,6 @@
 package com.styx.gta.donorblood.fragments.about;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 

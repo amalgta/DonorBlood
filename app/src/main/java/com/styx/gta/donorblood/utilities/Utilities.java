@@ -84,4 +84,7 @@ public class Utilities {
         }
         return null;
     }
+    public static boolean isAdmin(){
+        return true;
+    }
 }

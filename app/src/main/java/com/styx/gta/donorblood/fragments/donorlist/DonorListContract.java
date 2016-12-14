@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.styx.gta.donorblood.adapters.DonorAdapter;
 import com.styx.gta.donorblood.base.BasePresenter;
+import com.styx.gta.donorblood.models.BloodGroup;
 
 /**
  * Created by amal.george on 29-11-2016.
@@ -11,7 +12,7 @@ import com.styx.gta.donorblood.base.BasePresenter;
 
 interface DonorListContract {
     interface View {
-        Bundle getViewArguments();
+        BloodGroup getThisGroup();
 
         DonorAdapter getAdapter();
     }
