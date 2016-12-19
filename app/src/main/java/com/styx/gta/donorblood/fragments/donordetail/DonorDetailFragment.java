@@ -44,7 +44,7 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
     }
 
     @Override
-    public void bindDonorUI(View rootView,final Donor donor) {
+    public void bindDonorUI(View rootView, final Donor donor) {
         ((TextView) rootView.findViewById(R.id.tv_name)).setText(donor.getName());
         ((TextView) rootView.findViewById(R.id.tv_age)).setText(String.valueOf(Utilities.findAge(donor.getDob())));
         ((TextView) rootView.findViewById(R.id.tv_contact)).setText(donor.getContact());
@@ -54,7 +54,7 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
         rootView.findViewById(R.id.iv_button_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?&q="+donor.getAddress());
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?&q=" + donor.getAddress());
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 try {
@@ -70,15 +70,20 @@ public class DonorDetailFragment extends BaseFragment implements DonorDetailCont
             }
         });
 
+
         rootView.findViewById(R.id.tv_share_to_whatsapp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.setPackage("com.whatsapp");
-                sendIntent.putExtra(Intent.EXTRA_TEXT, donor.getName() + " " + donor.getContact());
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                try {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.setPackage("com.whatsapp");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, donor.getName() + " " + donor.getContact());
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(getContext(), "WhatsApp not Found", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
